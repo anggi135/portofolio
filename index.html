@@ -463,8 +463,38 @@ Hubungi kami untuk konsultasi pembuatan website portofolio profesional.
 
 </div>
 
+  
+<!-- DOT NAV -->
+<div class="fixed left-10 top-1/2 -translate-y-1/2 flex flex-col gap-6 z-50">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    </div>
+
+
 <script>
-lucide.createIcons();
+    lucide.createIcons();
+
+    const sections = document.querySelectorAll("section");
+    const dots = document.querySelectorAll(".dot");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                sections.forEach(s => s.classList.remove("active"));
+                entry.target.classList.add("active");
+
+                const index = [...sections].indexOf(entry.target);
+                dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+            }
+        });
+    }, { threshold: 0.35 });
+
+    sections.forEach(section => observer.observe(section));
 </script>
 
 </body>
