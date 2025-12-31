@@ -9,139 +9,133 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
+
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #010409;
-            color: #ffffff;
-        }
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #010409;
+    color: #ffffff;
+    overflow: hidden;
+}
 
-        /* ================= SLIDER ================= */
-        .slider-wrapper {
-            height: 100dvh;
-            width: 100%;
-            scroll-snap-type: y proximity;
-            overflow-y: scroll;
-            scroll-behavior: smooth;
-            perspective: 1200px;
-        }
+/* ================= SLIDER ================= */
+.slider-wrapper {
+    height: 100dvh;
+    width: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    perspective: 1200px;
+}
 
-        section {
-            min-height: 100dvh;
-            scroll-snap-align: start;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            transition: transform 1s cubic-bezier(.23,1,.32,1), opacity 1s;
-        }
-
-        section:not(.active) {
-            transform: scale(.85) rotateX(10deg) translateY(50px);
-            opacity: .3;
-            filter: blur(5px);
-        }
-
-        .content-reveal {
-            opacity: 0;
-            transform: translateY(60px) scale(.9);
-            transition: 1s cubic-bezier(.34,1.56,.64,1);
-        }
-
-        section.active .content-reveal {
-            opacity: 1;
-            transform: none;
-        }
-
-        .bg-img {
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background-size: cover;
-            background-position: center;
-            filter: brightness(.15);
-            transition: transform 2.5s ease;
-        }
-
-        section.active .bg-img {
-            transform: scale(1.15) translateY(-20px);
-        }
-
-        /* ================= TESTIMONIAL ================= */
-        .testi-track {
-            display: flex;
-            gap: 40px;
-            width: max-content;
-            animation: scrollLoop 45s linear infinite;
-        }
-
-        @keyframes scrollLoop {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        .testi-item {
-            width: 420px;
-            min-height: 220px;
-            flex-shrink: 0;
-            background: rgba(255,255,255,.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,.08);
-            padding: 36px;
-            border-radius: 36px;
-        }
-
-        .testi-item h4 {
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .testi-item p {
-            font-size: 14px;
-            line-height: 1.7;
-        }
-
-        .testi-item img {
-            width: 48px;
-            height: 48px;
-        }
-
-        @media (max-width: 768px) {
-            .testi-item {
-                width: 300px;
-                padding: 26px;
-            }
-        }
-
-        /* ================= DOT NAV ================= */
-        .dot {
-            width: 4px;
-            height: 4px;
-            background: rgba(255,255,255,.2);
-            border-radius: 50%;
-            transition: .5s;
-        }
-
-        .dot.active {
-            height: 24px;
-            background: #f97316;
-            border-radius: 10px;
-            box-shadow: 0 0 15px #f97316;
-        }
-
-        /* ================= GALLERY GRID (5 FOTO) ================= */
-
-section.gallery {
+/* ================= SECTION ================= */
+section {
     min-height: 100dvh;
-    padding: 140px 0;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 1s cubic-bezier(.23,1,.32,1),
+                opacity 1s cubic-bezier(.23,1,.32,1);
+}
+
+/* cinematic inactive */
+section:not(.active) {
+    transform: scale(.88) translateY(60px);
+    opacity: .35;
+    filter: blur(4px);
+}
+
+/* ================= CONTENT REVEAL ================= */
+.content-reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: 1s cubic-bezier(.34,1.56,.64,1);
+}
+
+section.active .content-reveal {
+    opacity: 1;
+    transform: none;
+}
+
+/* ================= BACKGROUND ================= */
+.bg-img {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(.15);
+    transition: transform 2.5s ease;
+}
+
+section.active .bg-img {
+    transform: scale(1.15) translateY(-20px);
+}
+
+/* ================= TESTIMONIAL ================= */
+.testi-track {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+    animation: scrollLoop 45s linear infinite;
+}
+
+@keyframes scrollLoop {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.testi-item {
+    width: 420px;
+    min-height: 220px;
+    flex-shrink: 0;
+    background: rgba(255,255,255,.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,.08);
+    padding: 36px;
+    border-radius: 36px;
+}
+
+.testi-item h4 { font-size: 14px; font-weight: 700; }
+.testi-item p { font-size: 14px; line-height: 1.7; }
+.testi-item img { width: 48px; height: 48px; }
+
+@media (max-width: 768px) {
+    .testi-item {
+        width: 300px;
+        padding: 26px;
+    }
+}
+
+/* ================= DOT NAV ================= */
+.dot {
+    width: 4px;
+    height: 4px;
+    background: rgba(255,255,255,.2);
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.dot.active {
+    height: 24px;
+    background: #f97316;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #f97316;
+}
+
+/* ================= GALLERY ================= */
+section.gallery {
+    padding: 120px 0;
     align-items: flex-start;
 }
 
@@ -163,7 +157,6 @@ section.gallery:not(.active) {
     gap: 18px;
 }
 
-/* ITEM */
 .grid-item {
     position: relative;
     overflow: hidden;
@@ -172,7 +165,6 @@ section.gallery:not(.active) {
     border: 1px solid rgba(255,255,255,.08);
 }
 
-/* IMAGE */
 .grid-item img {
     width: 100%;
     height: 100%;
@@ -186,30 +178,12 @@ section.gallery:not(.active) {
     filter: brightness(1);
 }
 
-/* ===== POLA 5 FOTO ===== */
+/* pola desktop */
+.grid-item:nth-child(1) { grid-column: span 2; }
+.grid-item:nth-child(2) { grid-row: span 2; }
+.grid-item:nth-child(3) { grid-row: span 2; }
 
-/* landscape besar (hero) */
-.grid-item:nth-child(1) {
-    grid-column: span 2;
-}
-
-/* portrait kiri */
-.grid-item:nth-child(2) {
-    grid-row: span 2;
-}
-
-/* portrait kanan */
-.grid-item:nth-child(3) {
-    grid-row: span 2;
-}
-
-/* dua normal */
-.grid-item:nth-child(4),
-.grid-item:nth-child(5) {
-    grid-column: span 1;
-}
-
-/* ===== TABLET ===== */
+/* ================= TABLET ================= */
 @media (max-width: 1024px) {
     .grid-gallery {
         grid-template-columns: repeat(2, 1fr);
@@ -222,20 +196,51 @@ section.gallery:not(.active) {
     }
 }
 
-/* ===== MOBILE ===== */
+/* ================= ANDROID CINEMATIC ================= */
+@media (max-width: 768px) {
+
+    body { overflow: hidden; }
+
+    .slider-wrapper {
+        height: 100dvh;
+        scroll-snap-type: y mandatory;
+    }
+
+    section {
+        min-height: 100dvh;
+        padding: 70px 0;
+        align-items: flex-start;
+    }
+
+    section:not(.active) {
+        transform: translateY(50px);
+        opacity: .45;
+        filter: none;
+    }
+
+    .content-reveal {
+        transform: translateY(40px);
+    }
+}
+
+/* ================= MOBILE ================= */
 @media (max-width: 640px) {
+
+    section {
+        padding: 60px 0;
+    }
+
     .grid-gallery {
         grid-template-columns: 1fr;
-        grid-auto-rows: 260px;
+        grid-auto-rows: 220px;
         gap: 16px;
     }
 
-    /* sembunyikan foto ke-4 ke atas */
+    /* tampilkan hanya 3 foto */
     .grid-gallery .grid-item:nth-child(n+4) {
         display: none;
     }
 }
-
 
     </style>
 </head>
