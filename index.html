@@ -11,141 +11,134 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
 
-/* ================= RESET ================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-html, body {
-    width: 100%;
-    overflow-x: hidden;
-}
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #010409;
+            color: #ffffff;
+        }
 
-body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background: #010409;
-    color: #ffffff;
-    -webkit-font-smoothing: antialiased;
-}
+        /* ================= SLIDER ================= */
+        .slider-wrapper {
+            height: 100dvh;
+            width: 100%;
+            scroll-snap-type: y proximity;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+            perspective: 1200px;
+        }
 
-/* ================= SLIDER ================= */
-.slider-wrapper {
-    height: 100dvh;
-    width: 100%;
-    overflow-y: scroll;
-    scroll-snap-type: y proximity;
-    scroll-behavior: smooth;
-    perspective: 1200px;
-}
+        section {
+            min-height: 100dvh;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 1s cubic-bezier(.23,1,.32,1), opacity 1s;
+        }
 
-/* ================= SECTION ================= */
-section {
-    min-height: 100dvh;
-    padding: 140px 0;
-    scroll-snap-align: start;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
+        section:not(.active) {
+            transform: scale(.85) rotateX(10deg) translateY(50px);
+            opacity: .3;
+            filter: blur(5px);
+        }
 
-    transition:
-        transform 1s cubic-bezier(.23,1,.32,1),
-        opacity 1s cubic-bezier(.23,1,.32,1),
-        filter 1s;
-}
+        .content-reveal {
+            opacity: 0;
+            transform: translateY(60px) scale(.9);
+            transition: 1s cubic-bezier(.34,1.56,.64,1);
+        }
 
-section:not(.active) {
-    transform: scale(.85) rotateX(10deg) translateY(50px);
-    opacity: .35;
-    filter: blur(6px);
-}
+        section.active .content-reveal {
+            opacity: 1;
+            transform: none;
+        }
 
-/* ================= CONTENT REVEAL ================= */
-.content-reveal {
-    opacity: 0;
-    transform: translateY(60px) scale(.9);
-    transition: 1s cubic-bezier(.34,1.56,.64,1);
-}
+        .bg-img {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(.15);
+            transition: transform 2.5s ease;
+        }
 
-section.active .content-reveal {
-    opacity: 1;
-    transform: none;
-}
+        section.active .bg-img {
+            transform: scale(1.15) translateY(-20px);
+        }
 
-/* ================= BACKGROUND ================= */
-.bg-img {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-size: cover;
-    background-position: center;
-    filter: brightness(.15);
-    transition: transform 2.5s ease, filter 1s ease;
-}
+        /* ================= TESTIMONIAL ================= */
+        .testi-track {
+            display: flex;
+            gap: 40px;
+            width: max-content;
+            animation: scrollLoop 45s linear infinite;
+        }
 
-section.active .bg-img {
-    transform: scale(1.15) translateY(-20px);
-}
+        @keyframes scrollLoop {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
 
-/* ================= TESTIMONIAL ================= */
-.testi-track {
-    display: flex;
-    gap: 40px;
-    width: max-content;
-    animation: scrollLoop 45s linear infinite;
-}
+        .testi-item {
+            width: 420px;
+            min-height: 220px;
+            flex-shrink: 0;
+            background: rgba(255,255,255,.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,.08);
+            padding: 36px;
+            border-radius: 36px;
+        }
 
-@keyframes scrollLoop {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
+        .testi-item h4 {
+            font-size: 14px;
+            font-weight: 700;
+        }
 
-.testi-item {
-    width: 420px;
-    min-height: 220px;
-    flex-shrink: 0;
-    background: rgba(255,255,255,.03);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,.08);
-    padding: 36px;
-    border-radius: 36px;
-}
+        .testi-item p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
 
-.testi-item h4 {
-    font-size: 14px;
-    font-weight: 700;
-}
+        .testi-item img {
+            width: 48px;
+            height: 48px;
+        }
 
-.testi-item p {
-    font-size: 14px;
-    line-height: 1.7;
-}
+        @media (max-width: 768px) {
+            .testi-item {
+                width: 300px;
+                padding: 26px;
+            }
+        }
 
-.testi-item img {
-    width: 48px;
-    height: 48px;
-}
+        /* ================= DOT NAV ================= */
+        .dot {
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,.2);
+            border-radius: 50%;
+            transition: .5s;
+        }
 
-/* ================= DOT NAV ================= */
-.dot {
-    width: 4px;
-    height: 4px;
-    background: rgba(255,255,255,.2);
-    border-radius: 50%;
-    transition: .5s;
-}
+        .dot.active {
+            height: 24px;
+            background: #f97316;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #f97316;
+        }
 
-.dot.active {
-    height: 24px;
-    background: #f97316;
-    border-radius: 10px;
-    box-shadow: 0 0 15px #f97316;
-}
+        /* ================= GALLERY GRID (5 FOTO) ================= */
 
-/* ================= GALLERY ================= */
 section.gallery {
     min-height: 100dvh;
     padding: 140px 0;
@@ -170,6 +163,7 @@ section.gallery:not(.active) {
     gap: 18px;
 }
 
+/* ITEM */
 .grid-item {
     position: relative;
     overflow: hidden;
@@ -178,6 +172,7 @@ section.gallery:not(.active) {
     border: 1px solid rgba(255,255,255,.08);
 }
 
+/* IMAGE */
 .grid-item img {
     width: 100%;
     height: 100%;
@@ -191,12 +186,30 @@ section.gallery:not(.active) {
     filter: brightness(1);
 }
 
-/* POLA DESKTOP */
-.grid-item:nth-child(1) { grid-column: span 2; }
-.grid-item:nth-child(2) { grid-row: span 2; }
-.grid-item:nth-child(3) { grid-row: span 2; }
+/* ===== POLA 5 FOTO ===== */
 
-/* ================= TABLET ================= */
+/* landscape besar (hero) */
+.grid-item:nth-child(1) {
+    grid-column: span 2;
+}
+
+/* portrait kiri */
+.grid-item:nth-child(2) {
+    grid-row: span 2;
+}
+
+/* portrait kanan */
+.grid-item:nth-child(3) {
+    grid-row: span 2;
+}
+
+/* dua normal */
+.grid-item:nth-child(4),
+.grid-item:nth-child(5) {
+    grid-column: span 1;
+}
+
+/* ===== TABLET ===== */
 @media (max-width: 1024px) {
     .grid-gallery {
         grid-template-columns: repeat(2, 1fr);
@@ -209,77 +222,20 @@ section.gallery:not(.active) {
     }
 }
 
-/* ================= MOBILE ================= */
-@media (max-width: 768px) {
-
-    /* SCROLL FIX */
-    .slider-wrapper {
-        height: auto;
-        min-height: 100vh;
-        overflow-y: auto;
-        scroll-snap-type: none;
-        perspective: none;
-    }
-
-    section {
-        min-height: auto;
-        padding: 120px 0;
-        transform: none !important;
-        filter: none !important;
-        opacity: 1 !important;
-    }
-
-    section:not(.active) {
-        transform: none;
-        opacity: 1;
-    }
-
-    /* HERO TEXT */
-    h1 {
-        font-size: clamp(3rem, 10vw, 4.5rem) !important;
-        line-height: 1.05;
-        word-break: break-word;
-    }
-
-    /* GALLERY */
+/* ===== MOBILE ===== */
+@media (max-width: 640px) {
     .grid-gallery {
         grid-template-columns: 1fr;
-        grid-auto-rows: 220px;
+        grid-auto-rows: 260px;
         gap: 16px;
     }
 
+    /* sembunyikan foto ke-4 ke atas */
     .grid-gallery .grid-item:nth-child(n+4) {
         display: none;
     }
-
-    /* TESTIMONIAL */
-    .testi-track {
-        gap: 20px;
-        animation-duration: 30s;
-    }
-
-    .testi-item {
-        width: 260px;
-        padding: 22px;
-    }
-
-    /* FIXED UI */
-    .dot {
-        display: none;
-    }
-
-    .fixed.top-10.right-10 {
-        top: 12px;
-        right: 12px;
-        scale: .85;
-    }
-
-    /* BG PERFORMANCE */
-    .bg-img {
-        filter: brightness(.25);
-        transform: none !important;
-    }
 }
+
 
     </style>
 </head>
