@@ -9,20 +9,25 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
 
+/* ================= RESET ================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background: #010409;
     color: #ffffff;
-    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* ================= SLIDER ================= */
@@ -30,7 +35,7 @@ body {
     height: 100dvh;
     width: 100%;
     overflow-y: scroll;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
     scroll-behavior: smooth;
     perspective: 1200px;
 }
@@ -38,27 +43,30 @@ body {
 /* ================= SECTION ================= */
 section {
     min-height: 100dvh;
+    padding: 140px 0;
     scroll-snap-align: start;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    transition: transform 1s cubic-bezier(.23,1,.32,1),
-                opacity 1s cubic-bezier(.23,1,.32,1);
+
+    transition:
+        transform 1s cubic-bezier(.23,1,.32,1),
+        opacity 1s cubic-bezier(.23,1,.32,1),
+        filter 1s;
 }
 
-/* cinematic inactive */
 section:not(.active) {
-    transform: scale(.88) translateY(60px);
+    transform: scale(.85) rotateX(10deg) translateY(50px);
     opacity: .35;
-    filter: blur(4px);
+    filter: blur(6px);
 }
 
 /* ================= CONTENT REVEAL ================= */
 .content-reveal {
     opacity: 0;
-    transform: translateY(60px);
+    transform: translateY(60px) scale(.9);
     transition: 1s cubic-bezier(.34,1.56,.64,1);
 }
 
@@ -75,7 +83,7 @@ section.active .content-reveal {
     background-size: cover;
     background-position: center;
     filter: brightness(.15);
-    transition: transform 2.5s ease;
+    transition: transform 2.5s ease, filter 1s ease;
 }
 
 section.active .bg-img {
@@ -106,15 +114,19 @@ section.active .bg-img {
     border-radius: 36px;
 }
 
-.testi-item h4 { font-size: 14px; font-weight: 700; }
-.testi-item p { font-size: 14px; line-height: 1.7; }
-.testi-item img { width: 48px; height: 48px; }
+.testi-item h4 {
+    font-size: 14px;
+    font-weight: 700;
+}
 
-@media (max-width: 768px) {
-    .testi-item {
-        width: 300px;
-        padding: 26px;
-    }
+.testi-item p {
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.testi-item img {
+    width: 48px;
+    height: 48px;
 }
 
 /* ================= DOT NAV ================= */
@@ -135,7 +147,8 @@ section.active .bg-img {
 
 /* ================= GALLERY ================= */
 section.gallery {
-    padding: 120px 0;
+    min-height: 100dvh;
+    padding: 140px 0;
     align-items: flex-start;
 }
 
@@ -178,7 +191,7 @@ section.gallery:not(.active) {
     filter: brightness(1);
 }
 
-/* pola desktop */
+/* POLA DESKTOP */
 .grid-item:nth-child(1) { grid-column: span 2; }
 .grid-item:nth-child(2) { grid-row: span 2; }
 .grid-item:nth-child(3) { grid-row: span 2; }
@@ -196,52 +209,79 @@ section.gallery:not(.active) {
     }
 }
 
-/* ================= ANDROID CINEMATIC ================= */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
-    body { overflow: hidden; }
-
+    /* SCROLL FIX */
     .slider-wrapper {
-        height: 100dvh;
-        scroll-snap-type: y mandatory;
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+        scroll-snap-type: none;
+        perspective: none;
     }
 
     section {
-        min-height: 100dvh;
-        padding: 70px 0;
-        align-items: flex-start;
+        min-height: auto;
+        padding: 120px 0;
+        transform: none !important;
+        filter: none !important;
+        opacity: 1 !important;
     }
 
     section:not(.active) {
-        transform: translateY(50px);
-        opacity: .45;
-        filter: none;
+        transform: none;
+        opacity: 1;
     }
 
-    .content-reveal {
-        transform: translateY(40px);
-    }
-}
-
-/* ================= MOBILE ================= */
-@media (max-width: 640px) {
-
-    section {
-        padding: 60px 0;
+    /* HERO TEXT */
+    h1 {
+        font-size: clamp(3rem, 10vw, 4.5rem) !important;
+        line-height: 1.05;
+        word-break: break-word;
     }
 
+    /* GALLERY */
     .grid-gallery {
         grid-template-columns: 1fr;
         grid-auto-rows: 220px;
         gap: 16px;
     }
 
-    /* tampilkan hanya 3 foto */
     .grid-gallery .grid-item:nth-child(n+4) {
         display: none;
     }
+
+    /* TESTIMONIAL */
+    .testi-track {
+        gap: 20px;
+        animation-duration: 30s;
+    }
+
+    .testi-item {
+        width: 260px;
+        padding: 22px;
+    }
+
+    /* FIXED UI */
+    .dot {
+        display: none;
+    }
+
+    .fixed.top-10.right-10 {
+        top: 12px;
+        right: 12px;
+        scale: .85;
+    }
+
+    /* BG PERFORMANCE */
+    .bg-img {
+        filter: brightness(.25);
+        transform: none !important;
+    }
 }
 
+    </style>
     </style>
 </head>
 
