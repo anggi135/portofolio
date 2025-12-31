@@ -1,1 +1,78 @@
-es
+
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #010409; color: #ffffff; }
+
+        /* ======================================================
+           DESKTOP CINEMATIC MODE
+        ====================================================== */
+        @media (min-width: 1024px) {
+            .slider-wrapper { height: 100vh; width: 100%; overflow-y: scroll; scroll-snap-type: y proximity; scroll-behavior: smooth; perspective: 1200px; }
+            section { min-height: 100vh; scroll-snap-align: start; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: transform 1s cubic-bezier(.23,1,.32,1), opacity 1s, filter 1s; }
+            section:not(.active) { transform: scale(.85) rotateX(10deg) translateY(50px); opacity: .35; filter: blur(5px); }
+            .content-reveal { opacity: 0; transform: translateY(60px) scale(.9); transition: 1s cubic-bezier(.34,1.56,.64,1); }
+            section.active .content-reveal { opacity: 1; transform: none; }
+            .bg-img { position: absolute; inset: 0; z-index: -1; background-size: cover; background-position: center; filter: brightness(.15); transition: transform 2.5s ease; }
+            section.active .bg-img { transform: scale(1.15) translateY(-20px); }
+        }
+
+        /* ======================================================
+           MOBILE / ANDROID SAFE MODE
+        ====================================================== */
+        @media (max-width: 1023px) {
+            .slider-wrapper { height: auto; overflow: visible; scroll-snap-type: none; perspective: none; }
+            section { min-height: auto; padding: 120px 0; transform: none !important; opacity: 1 !important; filter: none !important; }
+            .content-reveal { opacity: 1; transform: none; }
+            .bg-img { transform: none !important; filter: brightness(.18); }
+        }
+
+        /* ======================================================
+           TESTIMONIAL
+        ====================================================== */
+        /* TESTIMONIAL ANIMATION */
+        .testi-track { display: flex; gap: 40px; width: max-content; animation: scrollLoop 45s linear infinite; }
+        @keyframes scrollLoop { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .testi-item { width: 420px; min-height: 220px; flex-shrink: 0; background: rgba(255,255,255,.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.08); padding: 36px; border-radius: 36px; }
+        @media (max-width: 768px) { .testi-item { width: 300px; padding: 26px; } }
+
+        /* ======================================================
+           DOT NAV
+        ====================================================== */
+        .dot { width: 4px; height: 4px; background: rgba(255,255,255,.2); border-radius: 50%; transition: .5s; }
+        .dot.active { height: 24px; background: #f97316; border-radius: 10px; box-shadow: 0 0 15px #f97316; }
+        @media (max-width: 1023px) { .dot { display: none; } }
+
+        /* ======================================================
+           GALLERY GRID (STAY ORIGINAL)
+        ====================================================== */
+        section.gallery { min-height: auto; padding: 140px 0; align-items: flex-start; }
+        section.gallery:not(.active) { transform: none; opacity: 1; filter: none; }
+        .grid-gallery { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: 18px; }
+        .grid-item { position: relative; overflow: hidden; border-radius: 22px; background: #0b1220; border: 1px solid rgba(255,255,255,.08); }
+        .grid-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s ease, filter .6s ease; filter: brightness(.8); }
+        .grid-item:hover img { transform: scale(1.06); filter: brightness(1); }
+
+        /* Desktop Grid Structure - TETAP ASLI */
+        .grid-item:nth-child(1) { grid-column: span 2; }
+        .grid-item:nth-child(2) { grid-row: span 2; }
+        .grid-item:nth-child(3) { grid-row: span 2; }
+        .grid-item:nth-child(8) { grid-column: span 2; }
+
+        @media (max-width: 1024px) {
+            .grid-gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 240px; }
+            .grid-item { grid-column: unset; grid-row: unset; }
+        }
+
+        @media (max-width: 640px) {
+            section.gallery { padding: 100px 0; }
+            .grid-gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; gap: 14px; }
+            .grid-item { grid-column: auto !important; grid-row: auto !important; }
+            .grid-gallery .grid-item:nth-child(n+5) { display: none; }
+        }
+
+        /* DIVIDER */
+        section::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 70%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent); opacity: .6; }
+        section::before { content: ""; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%); width: 40%; height: 12px; background: radial-gradient(ellipse at center, rgba(249,115,22,.25), transparent 70%); filter: blur(12px); opacity: .6; }
+        section:last-of-type::after, section:last-of-type::before { display: none; }
