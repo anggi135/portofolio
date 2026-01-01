@@ -76,3 +76,50 @@
         section::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 70%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent); opacity: .6; }
         section::before { content: ""; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%); width: 40%; height: 12px; background: radial-gradient(ellipse at center, rgba(249,115,22,.25), transparent 70%); filter: blur(12px); opacity: .6; }
         section:last-of-type::after, section:last-of-type::before { display: none; }
+
+
+        /* CERTIFICATION GALLERY SPECIFIC */
+        .cert-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .cert-card:hover {
+            border-color: #f97316;
+            transform: translateY(-10px);
+            background: rgba(249, 115, 22, 0.05);
+        }
+        .cert-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #f97316;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        /* END OF CERTIFICATION GALLERY SPECIFIC */
+
+        /* PREMIUM FOOTER STYLE */
+        .footer-social-link {
+            @apply flex flex-col items-center gap-2 text-slate-500 hover:text-white transition-all duration-300;
+        }
+        .footer-social-link i {
+            @apply w-5 h-5 transition-transform duration-500;
+        }
+        .footer-social-link:hover i {
+            @apply scale-125 text-orange-500;
+            filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.5));
+        }
+        .footer-social-link span {
+            @apply text-[9px] uppercase tracking-[0.2em] font-bold opacity-0 translate-y-2 transition-all duration-300;
+        }
+        .footer-social-link:hover span {
+            @apply opacity-100 translate-y-0 text-orange-500;
+        }
