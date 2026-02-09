@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Initialize Lucide Icons
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
@@ -8,47 +9,41 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentStep = 0;
     let isScrolling = false;
 
+    // 2. Function to change section
     function showSection(index) {
         if (index < 0 || index >= sections.length) return;
         
+        // Remove active class from all
         sections.forEach(s => s.classList.remove("active"));
         dots.forEach(d => d.classList.remove("active"));
         
+        // Add active to targeted
         sections[index].classList.add("active");
         if (dots[index]) dots[index].classList.add("active");
         
-        // Reset scroll position slide ke atas setiap kali ganti slide
-        sections[index].scrollTo(0, 0);
         currentStep = index;
     }
 
-    // Smart Scroll: Mendeteksi apakah user sudah mentok scroll di dalam slide
-    function handleNavigation(direction) {
-        const activeSection = sections[currentStep];
-        const isAtBottom = activeSection.scrollHeight - activeSection.scrollTop <= activeSection.clientHeight + 1;
-        const isAtTop = activeSection.scrollTop === 0;
-
-        if (isScrolling) return;
-
-        if (direction > 0 && isAtBottom) { // Scroll Down / Swipe Up
-            isScrolling = true;
-            showSection((currentStep + 1) % sections.length);
-            setTimeout(() => isScrolling = false, 1000);
-        } else if (direction < 0 && isAtTop) { // Scroll Up / Swipe Down
-            isScrolling = true;
-            showSection((currentStep - 1 + sections.length) % sections.length);
-            setTimeout(() => isScrolling = false, 1000);
-        }
-    }
-
+    // 3. Wheel Scroll Handler
     window.addEventListener('wheel', (e) => {
-        handleNavigation(e.deltaY);
-    }, { passive: false });
+        if (isScrolling) return;
+        
+        isScrolling = true;
+        if (e.deltaY > 0) {
+            showSection((currentStep + 1) % sections.length);
+        } else {
+            showSection((currentStep - 1 + sections.length) % sections.length);
+        }
+        
+        setTimeout(() => isScrolling = false, 1000); // Cooldown transition
+    }, { passive: true });
 
+    // 4. Dot Navigation Click
     dots.forEach((dot, idx) => {
         dot.addEventListener('click', () => showSection(idx));
     });
 
+    // 5. Hexagon Menu Navigation
     document.querySelectorAll('.hexagon-item').forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
@@ -57,18 +52,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Mobile Swipe Support
+    // 6. Mobile Touch Support (Swipe Up/Down)
     let touchStartY = 0;
+    let touchEndY = 0;
+
     window.addEventListener('touchstart', e => {
         touchStartY = e.changedTouches[0].screenY;
     }, { passive: true });
 
     window.addEventListener('touchend', e => {
-        let touchEndY = e.changedTouches[0].screenY;
-        let deltaY = touchStartY - touchEndY; // Positive = Swipe Up (Go Down)
-
-        if (Math.abs(deltaY) > 50) { // Threshold swipe
-            handleNavigation(deltaY);
+        touchEndY = e.changedTouches[0].screenY;
+        if (isScrolling) return;
+        
+        if (touchEndY < touchStartY - 50) { // Swipe Up
+            showSection((currentStep + 1) % sections.length);
+        } else if (touchEndY > touchStartY + 50) { // Swipe Down
+            showSection((currentStep - 1 + sections.length) % sections.length);
         }
     }, { passive: true });
 });
