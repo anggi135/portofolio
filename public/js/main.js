@@ -1,54 +1,60 @@
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.lucide) { lucide.createIcons(); }
+    lucide.createIcons();
 
-    const sections = document.querySelectorAll(".step");
+    const sections = document.querySelectorAll("section");
     const dots = document.querySelectorAll(".dot");
-    let currentIdx = 0;
-    let isLocked = false;
-    let touchStartY = 0;
+    let currentStep = 0;
+    let isScrolling = false;
 
-    function changeSlide(newIdx) {
-        if (newIdx === currentIdx || newIdx < 0 || newIdx >= sections.length || isLocked) return;
+    // Fix Mobile VH
+    const updateVH = () => {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+    window.addEventListener('resize', updateVH);
+    updateVH();
 
-        isLocked = true;
-        const prevIdx = currentIdx;
-        currentIdx = newIdx;
-
-        sections[prevIdx].classList.remove('active');
-        sections[prevIdx].classList.add('exit');
-        sections[currentIdx].classList.add('active');
-
-        dots.forEach((dot, i) => { dot.classList.toggle('active', i === currentIdx); });
-
-        setTimeout(() => {
-            sections[prevIdx].classList.remove('exit');
-            isLocked = false;
-        }, 900);
+    function showSection(index) {
+        sections.forEach(s => s.classList.remove("active"));
+        dots.forEach(d => d.classList.remove("active"));
+        
+        sections[index].classList.add("active");
+        dots[index].classList.add("active");
+        sections[index].scrollTop = 0; // Reset scroll position
     }
 
+    // Scroll Logic
     window.addEventListener('wheel', (e) => {
-        if (isLocked) return;
-        if (e.deltaY > 0) { if (currentIdx < sections.length - 1) changeSlide(currentIdx + 1); } 
-        else { if (currentIdx > 0) changeSlide(currentIdx - 1); }
-    }, { passive: true });
-
-    window.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
-    window.addEventListener('touchend', (e) => {
-        if (isLocked) return;
-        const delta = touchStartY - e.changedTouches[0].clientY;
-        if (Math.abs(delta) > 50) {
-            if (delta > 0 && currentIdx < sections.length - 1) changeSlide(currentIdx + 1);
-            else if (delta < 0 && currentIdx > 0) changeSlide(currentIdx - 1);
+        if (isScrolling) return;
+        isScrolling = true;
+        
+        if (e.deltaY > 0 && currentStep < sections.length - 1) {
+            currentStep++;
+        } else if (e.deltaY < 0 && currentStep > 0) {
+            currentStep--;
         }
+        
+        showSection(currentStep);
+        setTimeout(() => { isScrolling = false; }, 800);
     }, { passive: true });
 
-    dots.forEach((dot, i) => { dot.addEventListener('click', () => changeSlide(i)); });
-
-    window.addEventListener('keydown', (e) => {
-        if (isLocked) return;
-        if (e.key === "ArrowDown" || e.key === "ArrowRight") changeSlide(currentIdx + 1);
-        else if (e.key === "ArrowUp" || e.key === "ArrowLeft") changeSlide(currentIdx - 1);
+    // Touch Support for Mobile
+    let touchStart = 0;
+    window.addEventListener('touchstart', (e) => touchStart = e.touches[0].clientY);
+    window.addEventListener('touchend', (e) => {
+        const touchEnd = e.changedTouches[0].clientY;
+        if (touchStart - touchEnd > 80 && currentStep < sections.length - 1) {
+            currentStep++;
+        } else if (touchEnd - touchStart > 80 && currentStep > 0) {
+            currentStep--;
+        }
+        showSection(currentStep);
     });
 
-    window.changeSlide = (newIdx) => changeSlide(newIdx);
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            currentStep = idx;
+            showSection(idx);
+        });
+    });
 });
