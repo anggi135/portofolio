@@ -1,82 +1,172 @@
 :root {
     --primary-red: #dc2626;
     --dark-bg: #0a0a0a;
+    --card-bg: #111111;
 }
 
-body, html { margin: 0; padding: 0; height: 100%; width: 100%; background: var(--dark-bg); }
-
-/* 3D Perspective Setup */
-.perspective-container {
-    perspective: 1200px;
-    height: 100vh;
-    width: 100%;
+body {
+    font-family: 'Space Grotesk', sans-serif;
     overflow: hidden;
-    position: relative;
+    background-color: var(--dark-bg);
 }
 
-.slide {
+/* Hero Styles */
+.hero-section {
+    position: relative;
+    background: radial-gradient(circle at center, #1a0505 0%, #0a0a0a 100%);
+}
+
+.overlay-pattern {
     position: absolute;
     inset: 0;
+    background-image: url('https://www.transparenttextures.com/patterns/batik-fractal.png');
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+.java-subtext {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #84754e; /* Gold Bronze */
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 12vw, 8rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+}
+
+/* Glitch Effect */
+.glitch-text {
+    position: relative;
+    color: white;
+}
+
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    text-shadow: -1px 0 var(--primary-red);
+    top: 0;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: noise-anim 2s infinite linear alternate-reverse;
+}
+
+@keyframes noise-anim {
+    0% { clip: rect(10px, 9999px, 50px, 0); }
+    100% { clip: rect(80px, 9999px, 100px, 0); }
+}
+
+/* Section Controls */
+.slider-wrapper section {
+    height: 100vh;
     width: 100%;
-    height: 100%;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-    transform: translateZ(-200px) rotateX(10deg); /* Efek 3D saat tidak aktif */
+    position: relative;
+    padding: 2rem;
 }
 
-.slide.active {
-    visibility: visible;
-    opacity: 1;
-    transform: translateZ(0) rotateX(0);
-}
-
-/* Slide Out Animation (Efek Menghilang ke Atas) */
-.slide.exit {
-    transform: translateY(-100%) translateZ(-500px) rotateX(-20deg);
-    opacity: 0;
-}
-
-/* Hexagon Menu Styles */
-.hexagon-menu {
-    display: grid;
-    grid-template-cols: repeat(2, 1fr);
-    gap: 20px;
-    max-width: 320px;
-    margin: 0 auto;
-}
-
-.hex-item {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(220, 38, 38, 0.2);
-    padding: 25px 15px;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: 0.3s;
+.slider-wrapper section.active {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    animation: fadeIn 0.8s ease-out forwards;
 }
 
-.hex-item:hover {
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Components */
+.tag {
     background: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--primary-red);
+}
+
+.arsenal-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 2.5rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.arsenal-card:hover {
     border-color: var(--primary-red);
-    transform: scale(1.05);
+    transform: translateY(-10px);
 }
 
-.hex-item i { color: var(--primary-red); width: 24px; }
-.hex-item span { font-size: 10px; font-weight: bold; letter-spacing: 2px; }
-
-/* Responsive Adjustments */
-@media (min-width: 768px) {
-    .hexagon-menu { grid-template-cols: repeat(4, 1fr); max-width: none; }
-    .hero-title { font-size: 7rem; }
+.icon-red {
+    color: var(--primary-red);
+    margin-bottom: 1.5rem;
+    width: 40px;
+    height: 40px;
 }
 
-.hero-title { font-size: 3rem; font-weight: 900; line-height: 0.9; }
-.java-subtext { font-family: 'Playfair Display', serif; color: #84754e; margin-bottom: 10px; }
-.overlay-pattern { position: absolute; inset: 0; background-image: url('https://www.transparenttextures.com/patterns/batik-fractal.png'); opacity: 0.05; z-index: -1; }
+.arsenal-card h3 {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.cert-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.year {
+    font-family: mono;
+    color: var(--primary-red);
+    font-weight: bold;
+}
+
+.project-box {
+    background: linear-gradient(145deg, #111111, #0a0a0a);
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 4px solid var(--primary-red);
+}
+
+.contact-btn {
+    font-size: clamp(1rem, 4vw, 2.5rem);
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    border-bottom: 2px solid var(--primary-red);
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    color: var(--primary-red);
+    letter-spacing: 0.05em;
+}
+
+/* Nav Dots */
+.dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: var(--primary-red);
+    box-shadow: 0 0 10px var(--primary-red);
+    transform: scale(1.5);
+}
