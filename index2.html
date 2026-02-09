@@ -13,99 +13,83 @@
 
     <div class="fixed top-6 right-6 z-[100] flex items-center gap-3 bg-red-950/20 px-4 py-2 rounded-lg border border-red-500/30 backdrop-blur-md">
         <div class="w-2 h-2 bg-red-600 rounded-full animate-pulse shadow-[0_0_10px_#dc2626]"></div>
-        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-red-500">System: Operational // 3D_MODE</span>
+        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-red-500">Mode: 3D Depth View</span>
     </div>
 
-    <div class="scene">
-        <main id="slider" class="slider-wrapper">
-            
-            <section class="step active hero-section">
-                <div class="overlay-pattern"></div>
-                <div class="content-reveal text-center">
-                    <p class="java-subtext">Sugeng Rawuh — Welcome to the Fortress</p>
-                    <h1 class="hero-title">ANGGI<br><span class="glitch-text" data-text="PRAYITNO">PRAYITNO</span></h1>
-                    <div class="flex justify-center gap-4 mt-6">
-                        <span class="tag">Offensive Security</span>
-                        <span class="tag">Bug Hunter</span>
+    <main id="slider" class="container-3d">
+        
+        <section class="step active">
+            <div class="content-reveal text-center">
+                <p class="java-subtext">Sugeng Rawuh — Red Team Researcher</p>
+                <h1 class="hero-title">ANGGI<br><span class="glitch-text" data-text="PRAYITNO">PRAYITNO</span></h1>
+                <div class="flex justify-center gap-4 mt-8">
+                    <span class="tag">Offensive Security</span>
+                    <span class="tag">Bug Hunter</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="step">
+            <div class="content-reveal w-full max-w-6xl px-6">
+                <h2 class="section-title">Core <span class="text-red-600">Arsenal</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="arsenal-card">
+                        <i data-lucide="target" class="icon-red"></i>
+                        <h3>Penetration Testing</h3>
+                        <p class="text-sm text-slate-400">Deep exploitation on Web & Network infrastructure.</p>
+                    </div>
+                    <div class="arsenal-card border-red-900/50 bg-red-950/5">
+                        <i data-lucide="shield-alert" class="icon-red"></i>
+                        <h3>Red Teaming</h3>
+                        <p class="text-sm text-slate-400">Advanced persistent threat simulation & bypass.</p>
+                    </div>
+                    <div class="arsenal-card">
+                        <i data-lucide="terminal" class="icon-red"></i>
+                        <h3>AI Scripting</h3>
+                        <p class="text-sm text-slate-400">Automating security workflows with custom AI.</p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="step">
-                <div class="content-reveal w-full max-w-6xl px-6">
-                    <h2 class="section-title">Core <span class="text-red-600">Arsenal</span></h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="arsenal-card group">
-                            <i data-lucide="target" class="icon-red"></i>
-                            <h3>Penetration Testing</h3>
-                            <p class="text-sm opacity-70">Web & Network exploitation.</p>
-                        </div>
-                        <div class="arsenal-card group">
-                            <i data-lucide="shield-alert" class="icon-red"></i>
-                            <h3>Red Teaming</h3>
-                            <p class="text-sm opacity-70">Bypassing defense systems.</p>
-                        </div>
-                        <div class="arsenal-card group">
-                            <i data-lucide="terminal" class="icon-red"></i>
-                            <h3>AI Scripting</h3>
-                            <p class="text-sm opacity-70">Automation with Python & AI.</p>
-                        </div>
+        <section class="step">
+            <div class="content-reveal w-full max-w-7xl px-6">
+                <h2 class="section-title text-center mb-12 italic text-red-600">Verified Credentials</h2>
+                <div class="cert-gallery">
+                    <div class="cert-card-3d">
+                        <img src="https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=400" alt="Cert 1">
+                        <div class="cert-info">Cyber Sentinel Secure</div>
+                    </div>
+                    <div class="cert-card-3d">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=400" alt="Cert 2">
+                        <div class="cert-info">CCNA Enterprise</div>
+                    </div>
+                    <div class="cert-card-3d">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=400" alt="Cert 3">
+                        <div class="cert-info">OWASP Top 10</div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="step">
-                <div class="content-reveal w-full max-w-7xl px-6 text-center">
-                    <h2 class="section-title mb-12">Verified <span class="text-red-600">Gallery</span></h2>
-                    <div class="certificate-grid">
-                        <div class="cert-3d-card">
-                            <div class="cert-inner">
-                                <div class="cert-front" style="background-image: url('https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600');">
-                                    <div class="cert-overlay">
-                                        <h4>Cyber Sentinel</h4>
-                                        <p>PT Teknologi Server Indo</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cert-3d-card">
-                            <div class="cert-inner">
-                                <div class="cert-front" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600');">
-                                    <div class="cert-overlay">
-                                        <h4>Cisco CCNA</h4>
-                                        <p>Enterprise Networking</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cert-3d-card">
-                            <div class="cert-inner">
-                                <div class="cert-front" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600');">
-                                    <div class="cert-overlay">
-                                        <h4>OWASP Top 10</h4>
-                                        <p>Linux Foundation</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <section class="step">
+            <div class="content-reveal text-center">
+                <h2 class="text-6xl font-bold mb-4 italic">Matur Nuwun.</h2>
+                <p class="text-red-500 font-mono mb-12">>>> CONNECTION CLOSED_</p>
+                <div class="flex flex-col gap-6">
+                    <a href="mailto:anggi.prayitnow@gmail.com" class="contact-link">START_CONVERSATION</a>
+                    <div class="flex justify-center gap-10 opacity-50">
+                        <i data-lucide="github"></i>
+                        <i data-lucide="linkedin"></i>
+                        <i data-lucide="award"></i>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="step">
-                <div class="content-reveal text-center">
-                    <h2 class="text-5xl font-bold mb-8 italic">Matur Nuwun.</h2>
-                    <a href="mailto:anggi.prayitnow@gmail.com" class="contact-btn">GET IN TOUCH</a>
-                    <footer class="mt-20 text-[10px] font-mono opacity-40 uppercase tracking-[0.5em]">
-                        © 2026 ANGGI PRAYITNO
-                    </footer>
-                </div>
-            </section>
+    </main>
 
-        </main>
-    </div>
-
-    <div class="fixed left-10 top-1/2 -translate-y-1/2 flex flex-col gap-6 z-[100]">
+    <div class="nav-dots">
         <div class="dot active"></div>
         <div class="dot"></div>
         <div class="dot"></div>
