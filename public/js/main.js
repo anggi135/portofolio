@@ -122,15 +122,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === "ArrowDown") changeSlide(currentIdx + 1);
         if (e.key === "ArrowUp") changeSlide(currentIdx - 1);
     });
+        // Tambahkan event listener khusus untuk Hexagon Menu
+    const hexItems = document.querySelectorAll(".hexagon-item");
+    hexItems.forEach((hex, index) => {
+        hex.addEventListener('click', () => {
+            // Kita panggil fungsi changeSlide yang sudah ada di atas
+            changeSlide(index);
+        });
+    });
 
-// Fungsi ini dipanggil dari onclick di HTML
-window.changeSlide = function(newIdx) {
-    // Gunakan logika transisi yang sudah kita buat sebelumnya
-    if (typeof changeSlideInternal === "function") {
-        changeSlideInternal(newIdx);
-    } else {
-        // Fallback jika nama fungsinya beda
-        document.dispatchEvent(new CustomEvent('nav-to-slide', { detail: newIdx }));
-    }
-};
+    // Ekspos fungsi ke window agar onclick="changeSlide(x)" di HTML tetap jalan
+    window.changeSlide = (newIdx) => {
+        changeSlide(newIdx);
+    };
 });
