@@ -1,37 +1,28 @@
-/* PORTFOLIO CSS - ANGGI PRAYITNO 
-   OPTIMIZED FOR: SPEED, RESPONSIVENESS, & 3D USER EXPERIENCE
-*/
-
 :root {
     --primary-red: #dc2626;
     --dark-bg: #0a0a0a;
     --card-bg: #111111;
-    --anim-speed: 0.8s; /* Snappier transition */
+    --anim-speed: 0.8s;
     --gold-accent: #84754e;
 }
 
-/* 1. RESET & PERFORMANCE BOOSTER */
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 body {
     font-family: 'Space Grotesk', sans-serif;
     background-color: var(--dark-bg);
     color: #ababab;
     margin: 0;
-    overflow: hidden; /* Lock scroll for 3D system */
-    touch-action: none; /* Improve swipe performance on mobile */
+    overflow: hidden;
+    touch-action: none;
     -webkit-font-smoothing: antialiased;
 }
 
-/* 2. 3D SLIDER (STABLE DEPTH) */
+/* 3D SYSTEM */
 .container-3d {
     position: relative;
-    width: 100%;
-    height: 100vh;
-    perspective: 1200px; /* Reduced for better performance */
+    width: 100%; height: 100vh;
+    perspective: 1200px;
     transform-style: preserve-3d;
 }
 
@@ -41,7 +32,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    will-change: transform, opacity; /* GPU Acceleration */
+    will-change: transform, opacity;
     transition: all var(--anim-speed) cubic-bezier(0.23, 1, 0.32, 1);
     opacity: 0;
     pointer-events: none;
@@ -61,49 +52,20 @@ body {
     transform: translateZ(500px) scale(1.2);
 }
 
-/* 3. HERO VISUALS */
-.hero-section {
-    background: radial-gradient(circle at center, #1a0505 0%, #0a0a0a 100%);
-}
+/* HERO & HEXAGON */
+.hero-section { background: radial-gradient(circle at center, #1a0505 0%, #0a0a0a 100%); }
 
 .overlay-pattern {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background-image: url('https://www.transparenttextures.com/patterns/batik-fractal.png');
-    opacity: 0.05;
-    pointer-events: none;
+    opacity: 0.05; pointer-events: none;
 }
 
-.java-subtext {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    color: var(--gold-accent);
-    letter-spacing: 0.2em;
-    font-size: clamp(0.7rem, 2vw, 1rem);
-    margin-bottom: 1rem;
-    text-align: center;
-}
+.java-subtext { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold-accent); letter-spacing: 0.2em; text-align: center; }
 
-.hero-title {
-    font-size: clamp(2.5rem, 10vw, 7rem);
-    font-weight: 900;
-    color: white;
-    text-transform: uppercase;
-    line-height: 0.9;
-    text-align: center;
-    letter-spacing: -0.02em;
-}
+.hero-title { font-size: clamp(2.5rem, 10vw, 7rem); font-weight: 900; color: white; text-transform: uppercase; line-height: 0.9; text-align: center; }
 
-/* 4. HEXAGON MENU (RESPONSIVE & CENTERED) */
-.hexagon-menu {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 40px;
-    gap: 15px;
-    width: 100%;
-    max-width: 1000px;
-}
+.hexagon-menu { display: flex; justify-content: center; flex-wrap: wrap; margin-top: 40px; gap: 15px; width: 100%; }
 
 .hexagon-item {
     cursor: pointer;
@@ -117,126 +79,38 @@ body {
 }
 
 .hex-content-wrapper {
-    position: absolute;
-    z-index: 20;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
+    position: absolute; z-index: 20;
+    display: flex; flex-direction: column;
+    align-items: center; pointer-events: none;
 }
 
-.hex-content-wrapper i {
-    width: clamp(24px, 4vw, 35px);
-    height: clamp(24px, 4vw, 35px);
-    color: #444;
-    transition: 0.3s;
-}
+.hex-content-wrapper i { width: clamp(24px, 4vw, 35px); height: clamp(24px, 4vw, 35px); color: #444; transition: 0.3s; }
 
-.hex-content-wrapper .title {
-    font-size: clamp(8px, 1.5vw, 10px);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #444;
-    margin-top: 8px;
-}
+.hex-content-wrapper .title { font-size: clamp(8px, 1.5vw, 10px); letter-spacing: 2px; text-transform: uppercase; font-weight: bold; color: #444; margin-top: 8px; }
 
-.hex-svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    fill: #0d0d0d;
-    transition: 0.4s;
-}
+.hex-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; fill: #0d0d0d; transition: 0.4s; }
 
-/* Hover States */
-.hexagon-item:hover { transform: translateY(-5px) scale(1.05); }
-.hexagon-item:hover .hex-content-wrapper i {
-    color: var(--primary-red);
-    filter: drop-shadow(0 0 8px var(--primary-red));
-}
+.hexagon-item:hover .hex-svg { fill: #1a0505; stroke: var(--primary-red); stroke-width: 2px; }
+.hexagon-item:hover i { color: var(--primary-red); filter: drop-shadow(0 0 8px var(--primary-red)); }
 .hexagon-item:hover .title { color: white; }
-.hexagon-item:hover .hex-svg {
-    fill: #1a0505;
-    stroke: var(--primary-red);
-    stroke-width: 2px;
-}
 
-/* 5. ARSENAL & GRID SYSTEM */
-.arsenal-card {
-    background: var(--card-bg);
-    border: 1px solid rgba(255,255,255,0.05);
-    padding: clamp(1.5rem, 3vw, 2.5rem);
-    border-radius: 20px;
-    transition: 0.3s;
-    width: 100%;
-}
-
-.arsenal-card:hover { 
-    border-color: var(--primary-red); 
-    background: rgba(220, 38, 38, 0.02);
-}
-
-/* 6. NAV DOTS (ADAPTIVE) */
-.nav-container {
-    position: fixed;
-    right: clamp(15px, 3vw, 30px);
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 100;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.1);
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.dot.active {
-    background: var(--primary-red);
-    box-shadow: 0 0 12px var(--primary-red);
-    transform: scale(1.6);
-}
-
-/* 7. RESPONSIVE MEDIA QUERIES */
-@media (max-width: 768px) {
-    .hexagon-menu {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        place-items: center;
-        gap: 10px;
-        padding-bottom: 50px;
-    }
-
-    .hexagon-item {
-        width: 130px;
-        height: 150px;
-    }
-
-    .nav-container {
-        flex-direction: row;
-        bottom: 20px;
-        top: auto;
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-    }
-
-    .step {
-        padding: 15px;
-        justify-content: flex-start; /* Better for scrolling content on mobile */
-        padding-top: 10vh;
-    }
-}
-
-/* Utility */
+/* COMPONENTS */
+.arsenal-card { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05); padding: 2rem; border-radius: 20px; transition: 0.3s; width: 100%; }
+.arsenal-card:hover { border-color: var(--primary-red); transform: translateY(-5px); }
 .icon-red { color: var(--primary-red); margin-bottom: 1rem; }
+
+.nav-container {
+    position: fixed; right: 30px; top: 50%;
+    transform: translateY(-50%); display: flex;
+    flex-direction: column; gap: 15px; z-index: 100;
+}
+
+.dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.1); cursor: pointer; transition: 0.3s; }
+.dot.active { background: var(--primary-red); box-shadow: 0 0 12px var(--primary-red); transform: scale(1.6); }
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .hexagon-menu { display: grid; grid-template-columns: repeat(2, 1fr); place-items: center; gap: 10px; }
+    .nav-container { flex-direction: row; bottom: 20px; top: auto; left: 50%; transform: translateX(-50%); }
+    .hero-title { font-size: 3.5rem; }
+}
