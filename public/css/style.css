@@ -1,3 +1,4 @@
+/* 1. VARIABEL & RESET */
 :root {
     --primary-red: #dc2626;
     --dark-bg: #0a0a0a;
@@ -8,10 +9,13 @@
 body {
     font-family: 'Space Grotesk', sans-serif;
     background-color: var(--dark-bg);
+    color: #ababab;
+    margin: 0;
+    overflow: hidden; /* Penting untuk sistem slide */
     overscroll-behavior-y: none;
 }
 
-/* 3D Mechanism */
+/* 2. SISTEM 3D SLIDER (REPLACEMENT) */
 .container-3d {
     position: relative;
     width: 100%;
@@ -37,6 +41,7 @@ body {
     opacity: 1;
     pointer-events: auto;
     transform: translateZ(0) scale(1);
+    z-index: 10;
 }
 
 .step.exit {
@@ -44,7 +49,7 @@ body {
     transform: translateZ(800px) scale(1.3);
 }
 
-/* Hero & Elements */
+/* 3. HERO & HEXAGON MENU (ADDITION) */
 .hero-section {
     background: radial-gradient(circle at center, #1a0505 0%, #0a0a0a 100%);
 }
@@ -61,44 +66,83 @@ body {
     font-family: 'Playfair Display', serif;
     font-style: italic;
     color: #84754e;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.3em;
     margin-bottom: 1rem;
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 10vw, 8rem);
+    font-size: clamp(2.5rem, 8vw, 6rem);
     font-weight: 900;
-    line-height: 0.9;
-    letter-spacing: -0.05em;
+    color: white;
     text-transform: uppercase;
+    line-height: 0.9;
 }
 
-/* Glitch */
-.glitch-text { position: relative; color: white; }
-.glitch-text::after {
-    content: attr(data-text);
-    position: absolute; left: 2px; top: 0;
-    text-shadow: -1px 0 var(--primary-red);
-    clip: rect(0, 900px, 0, 0);
-    animation: noise-anim 2s infinite linear alternate-reverse;
+/* HEXAGON LOGIC */
+.hexagon-menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    gap: 10px;
 }
 
-@keyframes noise-anim {
-    0% { clip: rect(10px, 9999px, 50px, 0); }
-    100% { clip: rect(80px, 9999px, 100px, 0); }
+.hexagon-item {
+    cursor: pointer;
+    width: 200px;
+    height: 173.2px;
+    position: relative;
+    transform: rotate(30deg);
+    transition: 0.4s;
 }
 
-/* Cards & Components */
-.tag {
-    background: rgba(220, 38, 38, 0.1);
-    border: 1px solid rgba(220, 38, 38, 0.3);
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 10px;
+.hex-item {
+    position: absolute;
+    top: 0; left: 50px;
+    width: 100px; height: 173.2px;
+}
+
+.hex-item div::before, .hex-item div::after {
+    content: "";
+    position: absolute;
+    width: 100%; height: 2px;
+    background-color: #1e2530;
+    transition: 0.4s;
+}
+
+.hexagon-item:hover .hex-item div::before,
+.hexagon-item:hover .hex-item div::after {
+    background-color: var(--primary-red);
+    box-shadow: 0 0 10px var(--primary-red);
+}
+
+.hex-content {
+    color: #fff;
+    display: block;
+    height: 180px; width: 156px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    transform: rotate(-30deg);
+    z-index: 5;
+}
+
+.hex-content .icon {
+    font-size: 36px;
+    display: block;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.hex-content .title {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     font-weight: bold;
-    color: var(--primary-red);
 }
 
+/* 4. COMPONENTS (ARSENAL & CARDS) */
 .arsenal-card {
     background: var(--card-bg);
     border: 1px solid rgba(255,255,255,0.05);
@@ -107,52 +151,39 @@ body {
     transition: 0.3s;
 }
 
-.arsenal-card:hover { border-color: var(--primary-red); transform: translateY(-5px); }
+.arsenal-card:hover { border-color: var(--primary-red); transform: translateY(-10px); }
 
-.icon-red { color: var(--primary-red); margin-bottom: 1.5rem; width: 35px; height: 35px; }
-
-.cert-card-box {
-    position: relative;
-    aspect-ratio: 3/4;
-    border-radius: 15px;
-    overflow: hidden;
-    background: #111;
-    border: 1px solid rgba(255,255,255,0.05);
+.tag {
+    background: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    padding: 4px 12px;
+    font-size: 10px;
+    color: var(--primary-red);
+    font-weight: bold;
 }
 
-.cert-card-box img {
-    width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: 0.5s;
-}
-
-.cert-card-box:hover img { opacity: 1; transform: scale(1.1); }
-
-.cert-label {
-    position: absolute; bottom: 15px; left: 15px; font-size: 11px; font-weight: bold; text-transform: uppercase;
-}
-
-/* Navigation dots */
+/* 5. NAV DOTS */
 .nav-container {
-    position: fixed; right: 25px; top: 50%; transform: translateY(-50%);
-    display: flex; flex-direction: column; gap: 1.5rem; z-index: 100;
+    position: fixed; right: 30px; top: 50%;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 20px; z-index: 100;
 }
 
 .dot {
-    width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2);
-    cursor: pointer; transition: 0.4s;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer; transition: 0.3s;
 }
 
 .dot.active {
     background: var(--primary-red);
-    box-shadow: 0 0 10px var(--primary-red);
+    box-shadow: 0 0 15px var(--primary-red);
     transform: scale(1.5);
 }
 
-.contact-btn {
-    font-size: clamp(1.2rem, 5vw, 3rem); font-weight: 900;
-    border-bottom: 2px solid var(--primary-red);
-}
-
+/* RESPONSIVE */
 @media (max-width: 768px) {
-    .step { transition: all 0.7s ease-in-out; }
-    .nav-container { right: 15px; }
+    .hexagon-menu { flex-direction: column; align-items: center; }
+    .hexagon-item { transform: rotate(30deg) scale(0.8); margin-bottom: -30px; }
+    .step { transition: all 0.7s ease; }
 }
