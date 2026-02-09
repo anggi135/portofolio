@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+<<<<<<< HEAD
 
 //Event listener menu
 document.querySelectorAll('.hexagon-item').forEach((item, index) => {
@@ -61,3 +62,5 @@ document.querySelectorAll('.hexagon-item').forEach((item, index) => {
         showSection(currentStep);
     });
 });
+=======
+>>>>>>> b7a70077371f84636d3483962536a82a56ce63ad

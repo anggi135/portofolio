@@ -170,6 +170,7 @@ body {
     box-shadow: 0 0 10px var(--primary-red);
     transform: scale(1.5);
 }
+<<<<<<< HEAD
 
 /*style menu*/
 /* Custom Hexagon Menu Styling */
@@ -279,3 +280,5 @@ body {
     }
 }
 /*end style  menu*/
+=======
+>>>>>>> b7a70077371f84636d3483962536a82a56ce63ad
