@@ -1,5 +1,6 @@
-/* PORTFOLIO CSS - ANGGI PRAYITNO
-    THEME: RED TEAM / OFFENSIVE SECURITY (JAVA MODERN ACCENT)
+/* PORTFOLIO CSS - ANGGI PRAYITNO 
+   THEME: RED TEAM / OFFENSIVE SECURITY 
+   CONCEPT: 3D DEPTH SLIDER + HEXAGONAL UI
 */
 
 :root {
@@ -7,6 +8,7 @@
     --dark-bg: #0a0a0a;
     --card-bg: #111111;
     --anim-speed: 1s;
+    --gold-accent: #84754e;
 }
 
 /* 1. RESET & BASE STYLES */
@@ -16,7 +18,7 @@ body {
     color: #ababab;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Mencegah scroll default browser */
+    overflow: hidden;
     overscroll-behavior-y: none;
     -webkit-font-smoothing: antialiased;
 }
@@ -71,14 +73,14 @@ body {
 .java-subtext {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    color: #84754e;
+    color: var(--gold-accent);
     letter-spacing: 0.3em;
     margin-bottom: 1rem;
     text-align: center;
 }
 
 .hero-title {
-    font-size: clamp(2rem, 8vw, 6rem);
+    font-size: clamp(2.5rem, 8vw, 6rem);
     font-weight: 900;
     color: white;
     text-transform: uppercase;
@@ -86,9 +88,10 @@ body {
     text-align: center;
 }
 
+/* Glitch Effect */
 .glitch-text {
     position: relative;
-    color: white;
+    display: inline-block;
 }
 
 .glitch-text::after {
@@ -127,19 +130,20 @@ body {
     transition: 0.4s ease;
 }
 
-.hex-content-inner {
-    position: relative;
+/* Kontainer konten di dalam hexagon agar center sempurna */
+.hex-content-wrapper {
+    position: absolute;
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    pointer-events: none;
+    pointer-events: none; /* Biar klik tembus ke parent */
 }
 
-.hex-content-inner i, 
-.hex-content-inner svg {
+.hex-content-wrapper i, 
+.hex-content-wrapper svg[data-lucide] {
     width: 35px;
     height: 35px;
     color: #444;
@@ -147,7 +151,7 @@ body {
     transition: 0.4s;
 }
 
-.hex-content-inner .title {
+.hex-content-wrapper .title {
     font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -166,8 +170,8 @@ body {
     transition: 0.5s;
 }
 
-/* Hexagon Hover State */
-.hexagon-item:hover .hex-content-inner i {
+/* Hover States */
+.hexagon-item:hover .hex-content-wrapper i {
     color: var(--primary-red);
     filter: drop-shadow(0 0 10px var(--primary-red));
 }
@@ -188,7 +192,7 @@ body {
     inset: 0;
     z-index: 2;
     pointer-events: none;
-    transform: rotate(30deg);
+    transform: rotate(30deg); /* Menyeimbangkan rotasi frame */
 }
 
 .hex-item div::before, .hex-item div::after {
@@ -267,12 +271,12 @@ body {
     .hexagon-menu {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 15px;
     }
     
     .hexagon-item {
-        transform: scale(0.8);
-        margin-bottom: -30px;
+        transform: scale(0.85);
+        margin-bottom: -40px;
     }
     
     .hero-title {
