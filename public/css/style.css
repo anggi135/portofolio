@@ -1,0 +1,281 @@
+:root {
+    --primary-red: #dc2626;
+    --dark-bg: #0a0a0a;
+    --card-bg: #111111;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    overflow: hidden;
+    background-color: var(--dark-bg);
+}
+
+/* Hero Styles */
+.hero-section {
+    position: relative;
+    background: radial-gradient(circle at center, #1a0505 0%, #0a0a0a 100%);
+}
+
+.overlay-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://www.transparenttextures.com/patterns/batik-fractal.png');
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+.java-subtext {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #84754e; /* Gold Bronze */
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 12vw, 8rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+}
+
+/* Glitch Effect */
+.glitch-text {
+    position: relative;
+    color: white;
+}
+
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    text-shadow: -1px 0 var(--primary-red);
+    top: 0;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: noise-anim 2s infinite linear alternate-reverse;
+}
+
+@keyframes noise-anim {
+    0% { clip: rect(10px, 9999px, 50px, 0); }
+    100% { clip: rect(80px, 9999px, 100px, 0); }
+}
+
+/* Section Controls */
+.slider-wrapper section {
+    height: 100vh;
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem;
+}
+
+.slider-wrapper section.active {
+    display: flex;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Components */
+.tag {
+    background: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--primary-red);
+}
+
+.arsenal-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 2.5rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.arsenal-card:hover {
+    border-color: var(--primary-red);
+    transform: translateY(-10px);
+}
+
+.icon-red {
+    color: var(--primary-red);
+    margin-bottom: 1.5rem;
+    width: 40px;
+    height: 40px;
+}
+
+.arsenal-card h3 {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.cert-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.year {
+    font-family: mono;
+    color: var(--primary-red);
+    font-weight: bold;
+}
+
+.project-box {
+    background: linear-gradient(145deg, #111111, #0a0a0a);
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 4px solid var(--primary-red);
+}
+
+.contact-btn {
+    font-size: clamp(1rem, 4vw, 2.5rem);
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    border-bottom: 2px solid var(--primary-red);
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    color: var(--primary-red);
+    letter-spacing: 0.05em;
+}
+
+/* Nav Dots */
+.dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: var(--primary-red);
+    box-shadow: 0 0 10px var(--primary-red);
+    transform: scale(1.5);
+}
+
+/*style menu*/
+/* Custom Hexagon Menu Styling */
+.hexagon-menu {
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hexagon-item {
+    cursor: pointer;
+    width: 200px;
+    height: 173.20508px;
+    position: relative;
+    transform: rotate(30deg);
+    transition: all 0.3s ease;
+    margin: 0 10px; /* Jarak antar hex */
+}
+
+.hex-item {
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 100px;
+    height: 173.20508px;
+}
+
+/* Garis Border Hexagon */
+.hex-item div::before, .hex-item div::after {
+    background-color: #333; /* Warna default garis */
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect - Warna Merah Red Team */
+.hexagon-item:hover .hex-item div::before,
+.hexagon-item:hover .hex-item div::after {
+    background-color: var(--primary-red);
+    box-shadow: 0 0 15px var(--primary-red);
+}
+
+.hexagon-item:hover {
+    transform: rotate(30deg) scale(1.1);
+    z-index: 10;
+}
+
+/* Konten di dalam Hexagon */
+.hex-content {
+    color: #fff;
+    display: block;
+    height: 180px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    transform: rotate(-30deg);
+    width: 156px;
+    z-index: 5;
+}
+
+.hex-content .hex-content-inner {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.hex-content .icon {
+    display: block;
+    font-size: 30px;
+    color: var(--primary-red);
+    margin-bottom: 8px;
+}
+
+.hex-content .title {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* SVG Shape di belakang */
+.hex-content svg {
+    position: absolute;
+    top: -10px;
+    left: -8px;
+    z-index: -1;
+    fill: #111; /* Warna isi hexagon */
+    transition: all 0.3s ease;
+}
+
+.hexagon-item:hover svg {
+    fill: #1a0505;
+}
+
+/* Responsive Fix */
+@media (max-width: 768px) {
+    .hexagon-menu {
+        flex-direction: column;
+        gap: 60px;
+    }
+}
+/*end style  menu*/
