@@ -122,4 +122,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === "ArrowDown") changeSlide(currentIdx + 1);
         if (e.key === "ArrowUp") changeSlide(currentIdx - 1);
     });
+
+// Fungsi ini dipanggil dari onclick di HTML
+window.changeSlide = function(newIdx) {
+    // Gunakan logika transisi yang sudah kita buat sebelumnya
+    if (typeof changeSlideInternal === "function") {
+        changeSlideInternal(newIdx);
+    } else {
+        // Fallback jika nama fungsinya beda
+        document.dispatchEvent(new CustomEvent('nav-to-slide', { detail: newIdx }));
+    }
+};
 });
