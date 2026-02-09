@@ -1,49 +1,73 @@
-// Global state
-let currentStep = 0;
-let sections;
-let dots;
-
-function showSection(index) {
-    sections.forEach(s => s.classList.remove("active"));
-    dots.forEach(d => d.classList.remove("active"));
-    
-    sections[index].classList.add("active");
-    dots[index].classList.add("active");
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-    lucide.createIcons();
-    sections = document.querySelectorAll("section");
-    dots = document.querySelectorAll(".dot");
+    // 1. Initialize Lucide Icons
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+
+    const sections = document.querySelectorAll("section");
+    const dots = document.querySelectorAll(".dot");
+    let currentStep = 0;
     let isScrolling = false;
 
-    // Scroll Handler
+    // 2. Function to change section
+    function showSection(index) {
+        if (index < 0 || index >= sections.length) return;
+        
+        // Remove active class from all
+        sections.forEach(s => s.classList.remove("active"));
+        dots.forEach(d => d.classList.remove("active"));
+        
+        // Add active to targeted
+        sections[index].classList.add("active");
+        if (dots[index]) dots[index].classList.add("active");
+        
+        currentStep = index;
+    }
+
+    // 3. Wheel Scroll Handler
     window.addEventListener('wheel', (e) => {
         if (isScrolling) return;
+        
         isScrolling = true;
         if (e.deltaY > 0) {
-            currentStep = (currentStep + 1) % sections.length;
+            showSection((currentStep + 1) % sections.length);
         } else {
-            currentStep = (currentStep - 1 + sections.length) % sections.length;
+            showSection((currentStep - 1 + sections.length) % sections.length);
         }
-        showSection(currentStep);
-        setTimeout(() => isScrolling = false, 1000);
-    });
+        
+        setTimeout(() => isScrolling = false, 1000); // Cooldown transition
+    }, { passive: true });
 
-    // Click dots
+    // 4. Dot Navigation Click
     dots.forEach((dot, idx) => {
-        dot.addEventListener('click', () => {
-            currentStep = idx;
-            showSection(currentStep);
+        dot.addEventListener('click', () => showSection(idx));
+    });
+
+    // 5. Hexagon Menu Navigation
+    document.querySelectorAll('.hexagon-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = parseInt(item.getAttribute('data-target'));
+            if (!isNaN(target)) showSection(target);
         });
     });
 
-    // Menu Hexagon listener
-    // Index + 2 karena menu ada di section index 1, dan kita ingin ke Arsenal (2), Credentials (3), dst.
-    document.querySelectorAll('.hexagon-item').forEach((item, index) => {
-        item.addEventListener('click', () => {
-            currentStep = index + 2; 
-            showSection(currentStep);
-        });
-    });
+    // 6. Mobile Touch Support (Swipe Up/Down)
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    window.addEventListener('touchstart', e => {
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    window.addEventListener('touchend', e => {
+        touchEndY = e.changedTouches[0].screenY;
+        if (isScrolling) return;
+        
+        if (touchEndY < touchStartY - 50) { // Swipe Up
+            showSection((currentStep + 1) % sections.length);
+        } else if (touchEndY > touchStartY + 50) { // Swipe Down
+            showSection((currentStep - 1 + sections.length) % sections.length);
+        }
+    }, { passive: true });
 });
