@@ -1,3 +1,7 @@
+/* PORTFOLIO CSS - ANGGI PRAYITNO
+    THEME: RED TEAM / OFFENSIVE SECURITY (JAVA MODERN ACCENT)
+*/
+
 :root {
     --primary-red: #dc2626;
     --dark-bg: #0a0a0a;
@@ -5,15 +9,19 @@
     --anim-speed: 1s;
 }
 
+/* 1. RESET & BASE STYLES */
 body {
     font-family: 'Space Grotesk', sans-serif;
     background-color: var(--dark-bg);
     color: #ababab;
     margin: 0;
-    overflow: hidden;
+    padding: 0;
+    overflow: hidden; /* Mencegah scroll default browser */
     overscroll-behavior-y: none;
+    -webkit-font-smoothing: antialiased;
 }
 
+/* 2. 3D SLIDER SYSTEM (DEPTH ZOOM) */
 .container-3d {
     position: relative;
     width: 100%;
@@ -47,6 +55,7 @@ body {
     transform: translateZ(800px) scale(1.3);
 }
 
+/* 3. HERO & VISUAL ELEMENTS */
 .hero-section {
     background: radial-gradient(circle at center, #1a0505 0%, #0a0a0a 100%);
 }
@@ -65,6 +74,7 @@ body {
     color: #84754e;
     letter-spacing: 0.3em;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 .hero-title {
@@ -73,85 +83,133 @@ body {
     color: white;
     text-transform: uppercase;
     line-height: 0.9;
+    text-align: center;
 }
 
+.glitch-text {
+    position: relative;
+    color: white;
+}
+
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    text-shadow: -1px 0 var(--primary-red);
+    top: 0;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: noise-anim 2s infinite linear alternate-reverse;
+}
+
+@keyframes noise-anim {
+    0% { clip: rect(10px, 9999px, 50px, 0); }
+    100% { clip: rect(80px, 9999px, 100px, 0); }
+}
+
+/* 4. HEXAGON MENU (SENTRALISASI OTOMATIS) */
 .hexagon-menu {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 50px;
-    gap: 15px;
+    gap: 20px;
 }
 
 .hexagon-item {
     cursor: pointer;
-    width: 200px;
-    height: 173.2px;
+    width: 180px;
+    height: 200px;
     position: relative;
-    transform: rotate(30deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s ease;
+}
+
+.hex-content-inner {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+}
+
+.hex-content-inner i, 
+.hex-content-inner svg {
+    width: 35px;
+    height: 35px;
+    color: #444;
+    margin-bottom: 8px;
     transition: 0.4s;
 }
 
-.hex-item {
-    position: absolute;
-    top: 0; left: 50px;
-    width: 100px; height: 173.2px;
-}
-
-.hex-item div::before, .hex-item div::after {
-    content: "";
-    position: absolute;
-    width: 100%; height: 2px;
-    background-color: #1e2530;
+.hex-content-inner .title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #444;
     transition: 0.4s;
 }
 
-.hexagon-item:hover .hex-item div::before,
-.hexagon-item:hover .hex-item div::after {
-    background-color: var(--primary-red);
-    box-shadow: 0 0 15px var(--primary-red);
-}
-
-.hexagon-item svg path {
-    transition: 0.5s;
+.hex-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
     fill: #111;
+    transition: 0.5s;
 }
 
-.hexagon-item:hover svg path {
+/* Hexagon Hover State */
+.hexagon-item:hover .hex-content-inner i {
+    color: var(--primary-red);
+    filter: drop-shadow(0 0 10px var(--primary-red));
+}
+
+.hexagon-item:hover .title {
+    color: white;
+}
+
+.hexagon-item:hover .hex-svg {
     fill: #1a0505;
     stroke: var(--primary-red);
     stroke-width: 2px;
 }
 
-.hex-content {
-    color: #fff;
-    display: block;
-    height: 180px; width: 156px;
-    margin: 0 auto;
-    position: relative;
-    text-align: center;
-    transform: rotate(-30deg);
-    z-index: 5;
+/* Dekorasi Garis Hexagon */
+.hex-item {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    transform: rotate(30deg);
 }
 
-.hex-content .icon {
-    font-size: 32px;
-    display: block;
-    margin-top: 55px;
-    margin-bottom: 5px;
-}
-
-.hex-content .title {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #666;
+.hex-item div::before, .hex-item div::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #1e2530;
     transition: 0.4s;
 }
 
-.hexagon-item:hover .title { color: white; }
+.hex-item div:nth-child(2) { transform: rotate(60deg); }
+.hex-item div:nth-child(3) { transform: rotate(120deg); }
 
+.hexagon-item:hover .hex-item div::before,
+.hexagon-item:hover .hex-item div::after {
+    background-color: var(--primary-red);
+    box-shadow: 0 0 10px var(--primary-red);
+}
+
+/* 5. ARSENAL & CARDS */
 .arsenal-card {
     background: var(--card-bg);
     border: 1px solid rgba(255,255,255,0.05);
@@ -160,19 +218,41 @@ body {
     transition: 0.3s;
 }
 
-.arsenal-card:hover { border-color: var(--primary-red); transform: translateY(-10px); }
+.arsenal-card:hover {
+    border-color: var(--primary-red);
+    transform: translateY(-10px);
+}
 
+.tag {
+    background: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    padding: 4px 12px;
+    font-size: 10px;
+    color: var(--primary-red);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* 6. NAVIGATION DOTS */
 .nav-container {
-    position: fixed; right: 30px; top: 50%;
+    position: fixed;
+    right: 30px;
+    top: 50%;
     transform: translateY(-50%);
-    display: flex; flex-direction: column; gap: 20px; z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 100;
 }
 
 .dot {
-    width: 10px; height: 10px; border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
     background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.1);
-    cursor: pointer; transition: 0.3s;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .dot.active {
@@ -182,7 +262,30 @@ body {
     border-color: var(--primary-red);
 }
 
+/* 7. RESPONSIVE DESIGN */
 @media (max-width: 768px) {
-    .hexagon-menu { flex-direction: column; align-items: center; }
-    .hexagon-item { transform: rotate(30deg) scale(0.75); margin-bottom: -40px; }
+    .hexagon-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .hexagon-item {
+        transform: scale(0.8);
+        margin-bottom: -30px;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .step {
+        transition: all 0.7s ease-in-out;
+    }
+}
+
+/* Utilitas Tambahan */
+.icon-red {
+    color: var(--primary-red);
+    margin-bottom: 1.5rem;
 }
