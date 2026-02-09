@@ -3,220 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anggi Web Dev | 3D Experience</title>
+    <title>Anggi Prayitno | Red Team Researcher</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;800&display=swap');
-        
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #000;
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        /* Container untuk efek 3D */
-        .viewport {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            perspective: 2000px; /* Memberikan kedalaman 3D */
-        }
-
-        .slider-3d {
-            width: 100%;
-            height: 100%;
-            transform-style: preserve-3d;
-        }
-
-        section {
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            backface-visibility: hidden;
-            background: #050505;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-        }
-
-        /* Dekorasi Background */
-        .grid-bg {
-            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
-            background-size: 40px 40px;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="public/css/style.css">
 </head>
-<body>
+<body class="bg-[#0a0a0a] text-slate-200">
 
-<div class="viewport grid-bg">
-    <div class="slider-3d" id="main-slider">
+    <div class="fixed top-6 right-6 z-50 flex items-center gap-3 bg-red-950/20 px-4 py-2 rounded-lg border border-red-500/30 backdrop-blur-md">
+        <div class="w-2 h-2 bg-red-600 rounded-full animate-pulse shadow-[0_0_10px_#dc2626]"></div>
+        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-red-500">System: Operational // Red Team</span>
+    </div>
+
+    <main id="slider" class="slider-wrapper">
         
-        <section class="slide">
-            <div class="text-center z-10">
-                <div class="inline-block px-4 py-1 mb-6 border border-orange-500/30 rounded-full bg-orange-500/5">
-                    <span class="text-orange-500 text-[10px] font-bold uppercase tracking-[0.3em]">Web Dev & Security</span>
-                </div>
-                <h1 class="text-6xl md:text-[9rem] font-black leading-none tracking-tighter mb-8">
+        <section class="active hero-section">
+            <div class="overlay-pattern"></div>
+            <div class="content-reveal text-center z-10">
+                <p class="java-subtext">Sugeng Rawuh — Welcome to the Fortress</p>
+                <h1 class="hero-title">
                     ANGGI<br>
-                    <span class="text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">Web Dev</span>
+                    <span class="glitch-text" data-text="PRAYITNO">PRAYITNO</span>
                 </h1>
-                <p class="text-slate-400 max-w-md mx-auto text-sm md:text-base mb-12">
-                    Membangun pengalaman digital yang memukau melalui website portofolio profesional dan undangan digital interaktif.
-                </p>
-                <i data-lucide="mouse-wheel" class="mx-auto opacity-30 animate-bounce"></i>
+                <div class="flex justify-center gap-4 mt-6">
+                    <span class="tag">Offensive Security</span>
+                    <span class="tag">Bug Hunter</span>
+                    <span class="tag">Red Teamer</span>
+                </div>
+                <div class="mt-12 opacity-30">
+                    <i data-lucide="chevron-down" class="mx-auto animate-bounce"></i>
+                </div>
             </div>
         </section>
 
-        <section class="slide">
-            <div class="max-w-6xl w-full">
-                <h2 class="text-4xl md:text-6xl font-black mb-12 text-center uppercase tracking-tighter">
-                    Expert <span class="text-orange-500 italic">Certifications</span>
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="glass-card p-8 hover:border-orange-500/50 transition-all duration-500">
-                        <i data-lucide="shield-check" class="text-orange-500 mb-6"></i>
-                        <h4 class="text-xl font-bold mb-3">Cyber Sentinel</h4>
-                        <p class="text-slate-400 text-sm">Penetration testing & identifikasi kerentanan sistem sesuai standar industri.</p>
+        <section>
+            <div class="content-reveal w-full max-w-6xl px-6">
+                <h2 class="section-title">Core <span class="text-red-600">Arsenal</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="arsenal-card group">
+                        <i data-lucide="target" class="icon-red"></i>
+                        <h3>Penetration Testing</h3>
+                        <p>Web, Network, & Mobile exploitation dengan metodologi standar industri.</p>
+                        <ul class="skill-list">
+                            <li>Burp Suite Pro</li>
+                            <li>Metasploit</li>
+                        </ul>
                     </div>
-                    <div class="glass-card p-8 border-orange-500/30">
-                        <i data-lucide="lock" class="text-orange-500 mb-6"></i>
-                        <h4 class="text-xl font-bold mb-3">Web Security</h4>
-                        <p class="text-slate-400 text-sm">Spesialisasi mitigasi OWASP Top 10 pada aplikasi web modern.</p>
+                    <div class="arsenal-card group">
+                        <i data-lucide="shield-alert" class="icon-red"></i>
+                        <h3>Red Teaming</h3>
+                        <p>Simulasi serangan nyata, Social Engineering, dan bypass pertahanan sistem.</p>
                     </div>
-                    <div class="glass-card p-8">
-                        <i data-lucide="server" class="text-orange-500 mb-6"></i>
-                        <h4 class="text-xl font-bold mb-3">Network Security</h4>
-                        <p class="text-slate-400 text-sm">Pengamanan infrastruktur jaringan dan manajemen akses kontrol.</p>
+                    <div class="arsenal-card group">
+                        <i data-lucide="terminal" class="icon-red"></i>
+                        <h3>AI Scripting</h3>
+                        <p>Otomatisasi tools keamanan menggunakan Python & AI-driven programming.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="slide">
-            <div class="glass-card p-8 md:p-16 max-w-4xl w-full mx-auto">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h2 class="text-4xl md:text-6xl font-black uppercase mb-6">Let's <span class="text-orange-500">Work</span></h2>
-                        <p class="text-slate-400 mb-8 text-sm">Tingkatkan branding digital Anda sekarang juga.</p>
-                        <div class="space-y-4 font-mono text-xs">
-                            <div class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4 text-orange-500"></i> +62 8211 431 6790</div>
-                            <div class="flex items-center gap-3"><i data-lucide="instagram" class="w-4 h-4 text-orange-500"></i> @anggi.prayitnow</div>
+        <section>
+            <div class="content-reveal w-full max-w-5xl px-6">
+                <h2 class="section-title">Verified <span class="text-red-600">Credentials</span></h2>
+                <div class="space-y-4">
+                    <div class="cert-item">
+                        <span class="year">2025</span>
+                        <div class="cert-info">
+                            <h4>Cyber Sentinel Secure</h4>
+                            <p>PT Teknologi Server Indonesia</p>
+                        </div>
+                        <i data-lucide="external-link" class="opacity-20"></i>
+                    </div>
+                    <div class="cert-item">
+                        <span class="year">2024</span>
+                        <div class="cert-info">
+                            <h4>CCNA: Enterprise Networking & Security</h4>
+                            <p>Cisco Networking Academy</p>
                         </div>
                     </div>
-                    <div class="space-y-4">
-                        <input type="text" placeholder="Your Name" class="w-full bg-white/5 border border-white/10 p-3 rounded-xl outline-none focus:border-orange-500">
-                        <textarea placeholder="Project Details" class="w-full bg-white/5 border border-white/10 p-3 rounded-xl h-24 outline-none focus:border-orange-500"></textarea>
-                        <button class="w-full bg-orange-600 hover:bg-orange-500 py-3 rounded-xl font-bold uppercase text-xs tracking-widest transition-all">Send Brief</button>
+                    <div class="cert-item">
+                        <span class="year">2024</span>
+                        <div class="cert-info">
+                            <h4>OWASP® Top 10 Security Threats</h4>
+                            <p>The Linux Foundation</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section>
+            <div class="content-reveal w-full max-w-6xl px-6">
+                <h2 class="section-title text-center">Security <span class="text-red-600">Research</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+                    <div class="project-box">
+                        <div class="flex justify-between items-start mb-4">
+                            <i data-lucide="bug" class="text-red-500"></i>
+                            <span class="status-badge">Private Program</span>
+                        </div>
+                        <h4 class="font-bold text-xl">Bug Bounty Contribution</h4>
+                        <p class="text-slate-400 text-sm mt-2">Menemukan dan melaporkan kerentanan kritis pada platform publik/privat guna memperkuat ekosistem digital.</p>
+                    </div>
+                    <div class="project-box">
+                        <div class="flex justify-between items-start mb-4">
+                            <i data-lucide="ghost" class="text-red-500"></i>
+                            <span class="status-badge">R&D</span>
+                        </div>
+                        <h4 class="font-bold text-xl">Cyber Threats & Defense</h4>
+                        <p class="text-slate-400 text-sm mt-2">Pengembangan platform edukasi simulasi serangan untuk meningkatkan kesadaran keamanan siber.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="content-reveal text-center w-full max-w-2xl">
+                <h2 class="text-5xl font-bold mb-8 italic">Matur Nuwun.</h2>
+                <p class="text-slate-400 mb-12">Siap berkolaborasi untuk mengamankan infrastruktur digital Anda.</p>
+                
+                <div class="flex flex-col gap-4">
+                    <a href="mailto:anggi.prayitnow@gmail.com" class="contact-btn">
+                        ANGGI.PRAYITNOW@GMAIL.COM
+                    </a>
+                    <div class="flex justify-center gap-8 mt-8">
+                        <a href="https://github.com/anggi135" class="social-link"><i data-lucide="github"></i></a>
+                        <a href="https://linkedin.com" class="social-link"><i data-lucide="linkedin"></i></a>
+                        <a href="#" class="social-link"><i data-lucide="instagram"></i></a>
+                    </div>
+                </div>
+                <footer class="mt-20 text-[10px] font-mono tracking-widest opacity-40">
+                    © 2026 ANGGI PRAYITNO — SECURING THE FRONTIER
+                </footer>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="fixed left-10 top-1/2 -translate-y-1/2 flex flex-col gap-6 z-50">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
     </div>
-</div>
 
-<div class="fixed right-6 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-50">
-    <div class="dot w-2 h-2 rounded-full bg-orange-500"></div>
-    <div class="dot w-2 h-2 rounded-full bg-white/20"></div>
-    <div class="dot w-2 h-2 rounded-full bg-white/20"></div>
-</div>
-
-<script>
-    lucide.createIcons();
-    gsap.registerPlugin(ScrollTrigger);
-
-    const slides = document.querySelectorAll(".slide");
-    
-    // Inisialisasi posisi slide dalam ruang 3D
-    slides.forEach((slide, i) => {
-        if (i !== 0) {
-            gsap.set(slide, { 
-                rotationX: -90, 
-                z: -500, 
-                opacity: 0,
-                display: "none" 
-            });
-        }
-    });
-
-    let currentIndex = 0;
-    let isAnimating = false;
-
-    function gotoSlide(index) {
-        if (isAnimating || index < 0 || index >= slides.length) return;
-        isAnimating = true;
-
-        const outgoing = slides[currentIndex];
-        const incoming = slides[index];
-
-        // Tampilkan slide berikutnya
-        gsap.set(incoming, { display: "flex" });
-
-        const tl = gsap.timeline({
-            onComplete: () => {
-                gsap.set(outgoing, { display: "none" });
-                currentIndex = index;
-                isAnimating = false;
-                updateDots();
-            }
-        });
-
-        // Animasi Keluar (Out) - Berputar ke atas
-        tl.to(outgoing, { 
-            rotationX: 90, 
-            z: -500, 
-            opacity: 0, 
-            duration: 1.2, 
-            ease: "expo.inOut" 
-        });
-
-        // Animasi Masuk (In) - Muncul dari bawah
-        tl.fromTo(incoming, 
-            { rotationX: -90, z: -500, opacity: 0 },
-            { rotationX: 0, z: 0, opacity: 1, duration: 1.2, ease: "expo.inOut" },
-            0
-        );
-    }
-
-    function updateDots() {
-        document.querySelectorAll(".dot").forEach((dot, i) => {
-            dot.style.backgroundColor = i === currentIndex ? "#f97316" : "rgba(255,255,255,0.2)";
-        });
-    }
-
-    // Deteksi Scroll Mouse
-    window.addEventListener("wheel", (e) => {
-        if (e.deltaY > 0) {
-            gotoSlide(currentIndex + 1);
-        } else {
-            gotoSlide(currentIndex - 1);
-        }
-    });
-
-    // Support Touch untuk HP
-    let touchStart = 0;
-    window.addEventListener("touchstart", (e) => touchStart = e.touches[0].clientY);
-    window.addEventListener("touchend", (e) => {
-        let touchEnd = e.changedTouches[0].clientY;
-        if (touchStart - touchEnd > 50) gotoSlide(currentIndex + 1);
-        if (touchStart - touchEnd < -50) gotoSlide(currentIndex - 1);
-    });
-</script>
-
+    <script src="public/js/main.js"></script>
 </body>
 </html>
