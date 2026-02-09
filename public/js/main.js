@@ -1,54 +1,50 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Icons
     lucide.createIcons();
 
-    const sections = document.querySelectorAll("section");
+    const slider = document.getElementById('slider');
+    const sections = document.querySelectorAll(".step");
     const dots = document.querySelectorAll(".dot");
-    let currentStep = 0;
-    let isScrolling = false;
+    let currentIdx = 0;
+    let isWaiting = false;
 
-    function showSection(index) {
-        sections.forEach(s => s.classList.remove("active"));
-        dots.forEach(d => d.classList.remove("active"));
+    // Definisikan rotasi untuk setiap sesi agar terasa 3D
+    const rotations = [
+        "rotateX(0deg) rotateY(0deg) translateZ(0px)",     // Hero
+        "rotateX(90deg) translateY(-500px) translateZ(500px)", // Arsenal
+        "rotateY(-90deg) translateX(500px) translateZ(500px)", // Gallery
+        "rotateX(-90deg) translateY(500px) translateZ(500px)"  // Contact
+    ];
+
+    function update3D() {
+        // Putar kontainer utama
+        slider.style.transform = rotations[currentIdx];
         
-        sections[index].classList.add("active");
-        dots[index].classList.add("active");
+        // Update class active & dots
+        sections.forEach((s, i) => {
+            s.classList.toggle('active', i === currentIdx);
+            dots[i].classList.toggle('active', i === currentIdx);
+        });
     }
 
-    // Scroll Handler
     window.addEventListener('wheel', (e) => {
-        if (isScrolling) return;
+        if (isWaiting) return;
         
-        isScrolling = true;
+        isWaiting = true;
         if (e.deltaY > 0) {
-            currentStep = (currentStep + 1) % sections.length;
+            currentIdx = (currentIdx + 1) % sections.length;
         } else {
-            currentStep = (currentStep - 1 + sections.length) % sections.length;
+            currentIdx = (currentIdx - 1 + sections.length) % sections.length;
         }
-        
-        showSection(currentStep);
-        
-        setTimeout(() => {
-            isScrolling = false;
-        }, 1000); // Cooldown scroll
+
+        update3D();
+
+        setTimeout(() => { isWaiting = false; }, 1200); // Sesuai speed CSS
     });
 
-    // Click dots to navigate
-    dots.forEach((dot, idx) => {
+    dots.forEach((dot, i) => {
         dot.addEventListener('click', () => {
-            currentStep = idx;
-            showSection(currentStep);
+            currentIdx = i;
+            update3D();
         });
-    });
-
-    // Optional: Keyboard Navigation
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowDown') {
-            currentStep = (currentStep + 1) % sections.length;
-            showSection(currentStep);
-        } else if (e.key === 'ArrowUp') {
-            currentStep = (currentStep - 1 + sections.length) % sections.length;
-            showSection(currentStep);
-        }
     });
 });
