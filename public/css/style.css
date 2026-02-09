@@ -1,131 +1,45 @@
-:root {
-    --primary-red: #dc2626;
-    --dark-bg: #0a0a0a;
-    --card-bg: #111111;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let current = 0;
+    let isTransitioning = false;
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+    window.goToSlide = (index) => {
+        if (isTransitioning || index === current) return;
+        isTransitioning = true;
 
-body {
-    font-family: 'Space Grotesk', sans-serif;
-    background-color: var(--dark-bg);
-    overflow-x: hidden;
-}
+        // Reset All
+        slides[current].classList.add('exit');
+        slides[current].classList.remove('active');
+        
+        setTimeout(() => {
+            slides.forEach(s => s.classList.remove('exit', 'active'));
+            slides[index].classList.add('active');
+            dots.forEach(d => d.classList.remove('active'));
+            dots[index].classList.add('active');
+            current = index;
+            isTransitioning = false;
+        }, 800);
+    };
 
-/* Fix for Android 100vh */
-.slider-wrapper section {
-    min-height: 100vh;
-    min-height: calc(var(--vh, 1vh) * 100);
-    width: 100%;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 20px;
-    overflow-y: auto;
-}
+    // Wheel Scroll Support
+    window.addEventListener('wheel', (e) => {
+        if (e.deltaY > 0) {
+            let next = (current + 1) % slides.length;
+            goToSlide(next);
+        } else {
+            let prev = (current - 1 + slides.length) % slides.length;
+            goToSlide(prev);
+        }
+    });
 
-.slider-wrapper section.active { display: flex; animation: fadeIn 0.6s ease-out; }
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Java Modern Aestethics */
-.overlay-pattern {
-    position: absolute;
-    inset: 0;
-    background-image: url('https://www.transparenttextures.com/patterns/batik-fractal.png');
-    opacity: 0.04;
-    pointer-events: none;
-}
-
-.java-subtext {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    color: #84754e;
-    letter-spacing: 0.1em;
-}
-
-.hero-title {
-    font-size: clamp(2.5rem, 10vw, 7rem);
-    font-weight: 900;
-    line-height: 0.95;
-    text-transform: uppercase;
-}
-
-/* Red Team Elements */
-.glitch-text { position: relative; color: white; }
-.glitch-text::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 2px;
-    text-shadow: -1px 0 var(--primary-red);
-    top: 0;
-    overflow: hidden;
-    clip: rect(0, 900px, 0, 0);
-    animation: glitch 3s infinite linear alternate-reverse;
-}
-
-@keyframes glitch {
-    0% { clip: rect(42px, 9999px, 44px, 0); }
-    20% { clip: rect(12px, 9999px, 50px, 0); }
-    100% { clip: rect(80px, 9999px, 100px, 0); }
-}
-
-.tag {
-    background: rgba(220, 38, 38, 0.1);
-    border: 1px solid rgba(220, 38, 38, 0.3);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 9px;
-    font-weight: bold;
-    color: var(--primary-red);
-}
-
-.arsenal-card {
-    background: var(--card-bg);
-    border: 1px solid rgba(255,255,255,0.05);
-    padding: 2rem;
-    border-radius: 16px;
-    transition: 0.3s;
-}
-
-.arsenal-card:hover { border-color: var(--primary-red); }
-
-.icon-red { color: var(--primary-red); width: 32px; height: 32px; margin-bottom: 1rem; }
-
-.cert-item {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1rem;
-    background: rgba(255,255,255,0.02);
-    border-radius: 12px;
-}
-
-.year { font-family: monospace; color: var(--primary-red); font-weight: bold; }
-
-.contact-btn {
-    display: inline-block;
-    color: white;
-    text-decoration: none;
-    border-bottom: 2px solid var(--primary-red);
-    transition: 0.3s;
-    font-weight: bold;
-}
-
-.contact-btn:hover { color: var(--primary-red); letter-spacing: 0.05em; }
-
-/* Navigation Dots */
-.dot { width: 8px; height: 8px; background: rgba(255,255,255,0.2); border-radius: 50%; cursor: pointer; transition: 0.3s; }
-.dot.active { background: var(--primary-red); transform: scale(1.4); box-shadow: 0 0 10px var(--primary-red); }
-
-.social-link i { width: 20px; height: 20px; opacity: 0.5; transition: 0.3s; }
-.social-link:hover i { opacity: 1; color: var(--primary-red); }
-
-@media (max-width: 768px) {
-    .section-title { font-size: 2rem; }
-    .hero-title { margin-top: 1rem; }
-}
+    // Touch Support Mobile
+    let startY = 0;
+    window.addEventListener('touchstart', e => startY = e.touches[0].clientY);
+    window.addEventListener('touchend', e => {
+        let endY = e.changedTouches[0].clientY;
+        if (startY - endY > 50) goToSlide((current + 1) % slides.length);
+        else if (endY - startY > 50) goToSlide((current - 1 + slides.length) % slides.length);
+    });
+});
