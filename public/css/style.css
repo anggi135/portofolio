@@ -1,33 +1,37 @@
 /* PORTFOLIO CSS - ANGGI PRAYITNO 
-   THEME: RED TEAM / OFFENSIVE SECURITY 
-   FIX: HEXAGON CONTENT ALIGNMENT & LAYER STACKING
+   OPTIMIZED FOR: SPEED, RESPONSIVENESS, & 3D USER EXPERIENCE
 */
 
 :root {
     --primary-red: #dc2626;
     --dark-bg: #0a0a0a;
     --card-bg: #111111;
-    --anim-speed: 1s;
+    --anim-speed: 0.8s; /* Snappier transition */
     --gold-accent: #84754e;
 }
 
-/* 1. RESET & BASE */
+/* 1. RESET & PERFORMANCE BOOSTER */
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
 body {
     font-family: 'Space Grotesk', sans-serif;
     background-color: var(--dark-bg);
     color: #ababab;
     margin: 0;
-    overflow: hidden;
-    overscroll-behavior-y: none;
+    overflow: hidden; /* Lock scroll for 3D system */
+    touch-action: none; /* Improve swipe performance on mobile */
     -webkit-font-smoothing: antialiased;
 }
 
-/* 2. 3D SLIDER (DEPTH) */
+/* 2. 3D SLIDER (STABLE DEPTH) */
 .container-3d {
     position: relative;
     width: 100%;
     height: 100vh;
-    perspective: 1500px;
+    perspective: 1200px; /* Reduced for better performance */
     transform-style: preserve-3d;
 }
 
@@ -37,11 +41,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    will-change: transform, opacity;
-    transition: all var(--anim-speed) cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity; /* GPU Acceleration */
+    transition: all var(--anim-speed) cubic-bezier(0.23, 1, 0.32, 1);
     opacity: 0;
     pointer-events: none;
-    transform: translateZ(-1000px) scale(0.7);
+    transform: translateZ(-800px) scale(0.8);
+    padding: 20px;
 }
 
 .step.active {
@@ -53,10 +58,10 @@ body {
 
 .step.exit {
     opacity: 0;
-    transform: translateZ(800px) scale(1.3);
+    transform: translateZ(500px) scale(1.2);
 }
 
-/* 3. HERO ELEMENTS */
+/* 3. HERO VISUALS */
 .hero-section {
     background: radial-gradient(circle at center, #1a0505 0%, #0a0a0a 100%);
 }
@@ -73,186 +78,165 @@ body {
     font-family: 'Playfair Display', serif;
     font-style: italic;
     color: var(--gold-accent);
-    letter-spacing: 0.3em;
+    letter-spacing: 0.2em;
+    font-size: clamp(0.7rem, 2vw, 1rem);
     margin-bottom: 1rem;
     text-align: center;
 }
 
 .hero-title {
-    font-size: clamp(2rem, 8vw, 6rem);
+    font-size: clamp(2.5rem, 10vw, 7rem);
     font-weight: 900;
     color: white;
     text-transform: uppercase;
     line-height: 0.9;
     text-align: center;
+    letter-spacing: -0.02em;
 }
 
-/* 4. HEXAGON MENU FIX (THE CORE ISSUE) */
+/* 4. HEXAGON MENU (RESPONSIVE & CENTERED) */
 .hexagon-menu {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 50px;
-    gap: 20px;
+    margin-top: 40px;
+    gap: 15px;
+    width: 100%;
+    max-width: 1000px;
 }
 
 .hexagon-item {
     cursor: pointer;
-    width: 180px;
-    height: 200px;
+    width: clamp(120px, 15vw, 180px);
+    height: clamp(140px, 18vw, 200px);
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.4s ease;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* KONTEN: Ikon & Teks ditaruh di paling depan */
 .hex-content-wrapper {
     position: absolute;
-    z-index: 20; /* Paling atas */
+    z-index: 20;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
     pointer-events: none;
 }
 
-.hex-content-wrapper i, 
-.hex-content-wrapper svg[data-lucide] {
-    width: 35px;
-    height: 35px;
-    color: #555;
-    margin-bottom: 10px;
-    transition: 0.4s;
+.hex-content-wrapper i {
+    width: clamp(24px, 4vw, 35px);
+    height: clamp(24px, 4vw, 35px);
+    color: #444;
+    transition: 0.3s;
 }
 
 .hex-content-wrapper .title {
-    font-size: 11px;
+    font-size: clamp(8px, 1.5vw, 10px);
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: bold;
-    color: #555;
-    transition: 0.4s;
+    color: #444;
+    margin-top: 8px;
 }
 
-/* SVG FRAME: Paling belakang */
 .hex-svg {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Paling bawah */
+    z-index: 1;
     fill: #0d0d0d;
-    transition: 0.5s;
-}
-
-/* GARIS DEKORASI: Di tengah antara Frame dan Konten */
-.hex-item {
-    position: absolute;
-    inset: 0;
-    z-index: 5; /* Di bawah teks, di atas frame */
-    pointer-events: none;
-    transform: rotate(30deg);
-}
-
-.hex-item div {
-    position: absolute;
-    width: 100px;
-    height: 173.2px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.hex-item div::before, .hex-item div::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: #1e2530;
     transition: 0.4s;
 }
 
-.hex-item div:nth-child(2) { transform: translate(-50%, -50%) rotate(60deg); }
-.hex-item div:nth-child(3) { transform: translate(-50%, -50%) rotate(120deg); }
-
-/* HOVER STATES */
+/* Hover States */
+.hexagon-item:hover { transform: translateY(-5px) scale(1.05); }
 .hexagon-item:hover .hex-content-wrapper i {
     color: var(--primary-red);
-    filter: drop-shadow(0 0 10px var(--primary-red));
+    filter: drop-shadow(0 0 8px var(--primary-red));
 }
-
-.hexagon-item:hover .title {
-    color: white;
-}
-
+.hexagon-item:hover .title { color: white; }
 .hexagon-item:hover .hex-svg {
     fill: #1a0505;
     stroke: var(--primary-red);
     stroke-width: 2px;
 }
 
-.hexagon-item:hover .hex-item div::before,
-.hexagon-item:hover .hex-item div::after {
-    background-color: var(--primary-red);
-    box-shadow: 0 0 10px var(--primary-red);
-}
-
-/* 5. COMPONENTS */
+/* 5. ARSENAL & GRID SYSTEM */
 .arsenal-card {
     background: var(--card-bg);
     border: 1px solid rgba(255,255,255,0.05);
-    padding: 2.5rem;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
     border-radius: 20px;
     transition: 0.3s;
+    width: 100%;
 }
 
-.arsenal-card:hover { border-color: var(--primary-red); transform: translateY(-10px); }
-
-.tag {
-    background: rgba(220, 38, 38, 0.1);
-    border: 1px solid rgba(220, 38, 38, 0.3);
-    padding: 4px 12px;
-    font-size: 10px;
-    color: var(--primary-red);
-    font-weight: bold;
-    text-transform: uppercase;
+.arsenal-card:hover { 
+    border-color: var(--primary-red); 
+    background: rgba(220, 38, 38, 0.02);
 }
 
-/* 6. NAVIGATION DOTS */
+/* 6. NAV DOTS (ADAPTIVE) */
 .nav-container {
     position: fixed;
-    right: 30px;
+    right: clamp(15px, 3vw, 30px);
     top: 50%;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     z-index: 100;
 }
 
 .dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.1);
     cursor: pointer;
     transition: 0.3s;
 }
 
 .dot.active {
     background: var(--primary-red);
-    box-shadow: 0 0 15px var(--primary-red);
-    transform: scale(1.5);
-    border-color: var(--primary-red);
+    box-shadow: 0 0 12px var(--primary-red);
+    transform: scale(1.6);
 }
 
-/* 7. RESPONSIVE */
+/* 7. RESPONSIVE MEDIA QUERIES */
 @media (max-width: 768px) {
-    .hexagon-menu { flex-direction: column; align-items: center; gap: 10px; }
-    .hexagon-item { transform: scale(0.8); margin-bottom: -30px; }
-    .hero-title { font-size: 3rem; }
+    .hexagon-menu {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        place-items: center;
+        gap: 10px;
+        padding-bottom: 50px;
+    }
+
+    .hexagon-item {
+        width: 130px;
+        height: 150px;
+    }
+
+    .nav-container {
+        flex-direction: row;
+        bottom: 20px;
+        top: auto;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+    }
+
+    .step {
+        padding: 15px;
+        justify-content: flex-start; /* Better for scrolling content on mobile */
+        padding-top: 10vh;
+    }
 }
+
+/* Utility */
+.icon-red { color: var(--primary-red); margin-bottom: 1rem; }
