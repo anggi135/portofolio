@@ -1,45 +1,54 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Icons
     lucide.createIcons();
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    let current = 0;
-    let isTransitioning = false;
 
-    window.goToSlide = (index) => {
-        if (isTransitioning || index === current) return;
-        isTransitioning = true;
+    const sections = document.querySelectorAll("section");
+    const dots = document.querySelectorAll(".dot");
+    let currentStep = 0;
+    let isScrolling = false;
 
-        // Reset All
-        slides[current].classList.add('exit');
-        slides[current].classList.remove('active');
+    function showSection(index) {
+        sections.forEach(s => s.classList.remove("active"));
+        dots.forEach(d => d.classList.remove("active"));
+        
+        sections[index].classList.add("active");
+        dots[index].classList.add("active");
+    }
+
+    // Scroll Handler
+    window.addEventListener('wheel', (e) => {
+        if (isScrolling) return;
+        
+        isScrolling = true;
+        if (e.deltaY > 0) {
+            currentStep = (currentStep + 1) % sections.length;
+        } else {
+            currentStep = (currentStep - 1 + sections.length) % sections.length;
+        }
+        
+        showSection(currentStep);
         
         setTimeout(() => {
-            slides.forEach(s => s.classList.remove('exit', 'active'));
-            slides[index].classList.add('active');
-            dots.forEach(d => d.classList.remove('active'));
-            dots[index].classList.add('active');
-            current = index;
-            isTransitioning = false;
-        }, 800);
-    };
-
-    // Wheel Scroll Support
-    window.addEventListener('wheel', (e) => {
-        if (e.deltaY > 0) {
-            let next = (current + 1) % slides.length;
-            goToSlide(next);
-        } else {
-            let prev = (current - 1 + slides.length) % slides.length;
-            goToSlide(prev);
-        }
+            isScrolling = false;
+        }, 1000); // Cooldown scroll
     });
 
-    // Touch Support Mobile
-    let startY = 0;
-    window.addEventListener('touchstart', e => startY = e.touches[0].clientY);
-    window.addEventListener('touchend', e => {
-        let endY = e.changedTouches[0].clientY;
-        if (startY - endY > 50) goToSlide((current + 1) % slides.length);
-        else if (endY - startY > 50) goToSlide((current - 1 + slides.length) % slides.length);
+    // Click dots to navigate
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            currentStep = idx;
+            showSection(currentStep);
+        });
+    });
+
+    // Optional: Keyboard Navigation
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') {
+            currentStep = (currentStep + 1) % sections.length;
+            showSection(currentStep);
+        } else if (e.key === 'ArrowUp') {
+            currentStep = (currentStep - 1 + sections.length) % sections.length;
+            showSection(currentStep);
+        }
     });
 });
