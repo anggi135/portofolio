@@ -26,12 +26,16 @@ body {
 /* ================= SLIDER ================= */
 .slider-wrapper section {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: none;
   align-items: center;
   justify-content: center;
   padding: 2rem;
 }
+
 
 .slider-wrapper section.active {
   display: flex;
@@ -466,5 +470,4 @@ body {
     font-size: 10px;
   }
 }
-
 
