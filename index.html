@@ -9,7 +9,6 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body class="bg-[#0a0a0a] text-slate-200 overflow-hidden">
@@ -30,11 +29,6 @@
       <li class="list" data-index="1">
         <span class="indicator"></span>
         <a href="#"><span class="icon"><i data-lucide="user"></i></span></a>
-      </li>
-
-      <li class="list" data-index="2">
-        <span class="indicator"></span>
-        <a href="#"><span class="icon"><i data-lucide="layout-grid"></i></span></a>
       </li>
 
       <li class="list" data-index="3">
@@ -87,41 +81,29 @@
                 </div>
             </div>
         </section>
-
+        
         <section>
-            <div class="content-reveal w-full max-w-4xl px-6">
-                <h2 class="section-title text-center mb-8 text-3xl font-bold uppercase">About <span class="text-red-600">Me</span></h2>
-                <div class="bg-zinc-900/50 p-6 md:p-10 rounded-2xl border border-red-900/20 backdrop-blur-md">
-                    <p class="text-slate-300 leading-relaxed text-sm md:text-lg text-center">
-                        Saya mahasiswa Sekolah Tinggi Teknologi Informasi NIIT I-Tech. dengan prodi Teknik Informatika dan juga meminati bidang <span class="text-red-500 font-bold">Cyber Security</span>.
-                    </p>
-                </div>
-            </div>
-        </section>
+    <div class="content-reveal w-full max-w-4xl px-6">
+        <h2 class="section-title text-center mb-8 text-3xl font-bold uppercase">
+            About <span class="text-red-600">Me</span>
+        </h2>
 
-        <section>
-            <div class="content-reveal w-full max-w-6xl px-6 flex flex-col items-center">
-                <h2 class="section-title mb-16 text-center text-3xl font-bold uppercase">Main <span class="text-red-600">Modules</span></h2>
-                <div class="hexagon-grid">
-                    <div class="hexagon-item" data-target="3">
-                        <div class="hex-shape">
-                            <div class="hex-inner">
-                                <i class="fa fa-terminal icon-hex"></i>
-                                <span class="title-hex">Arsenal</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hexagon-item" data-target="4">
-                        <div class="hex-shape">
-                            <div class="hex-inner">
-                                <i class="fa fa-code-fork icon-hex"></i>
-                                <span class="title-hex">Project</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- FOTO PROFILE -->
+        <div class="profile-wrapper">
+            <div class="profile-border">
+                <img src="public/img/anggi-prayitno.jpg" alt="Foto Profile" class="profile-img">
             </div>
-        </section>
+        </div>
+
+        <div class="bg-zinc-900/50 p-6 md:p-10 rounded-2xl border border-red-900/20 backdrop-blur-md mt-8">
+            <p class="text-slate-300 leading-relaxed text-sm md:text-lg text-center">
+                Saya mahasiswa Sekolah Tinggi Teknologi Informasi NIIT I-Tech kelas karyawan.
+                dengan prodi Teknik Informatika dan juga meminati bidang 
+                <span class="text-red-500 font-bold">Cyber Security</span>.
+            </p>
+        </div>
+    </div>
+</section>
 
         <section>
             <div class="content-reveal w-full max-w-5xl px-6">
@@ -134,28 +116,50 @@
             </div>
         </section>
 
-        <section>
-            <div class="content-reveal w-full max-w-6xl px-6">
-                <h2 class="section-title text-center mb-8 text-3xl font-bold uppercase">Proven <span class="text-red-600">Projects</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-y-auto max-h-[60vh] p-4 custom-scroll">
-                    <div class="project-card-v2">
-                        <h4 class="text-red-500 font-bold">Cyber Threats & Defense</h4>
-                        <p class="text-xs text-slate-400">Website Edukasi berbasis laravel dan Tools Demonstrasi serangan Cyber Threats.</p>
-                        <div class="mt-4 flex gap-4"><a href="https://github.com/anggi135/project" class="text-xs border-b border-red-500">GitHub</a></div>
-                    </div>
-                                        <div class="project-card-v2">
-                        <h4 class="text-red-500 font-bold">Search Engine Journal</h4>
-                        <p class="text-xs text-slate-400">Membangun Program basis Java untuk mengimplementasikan mesin pencarian jurnal dengan API dari Google cse.</p>
-                        <div class="mt-4 flex gap-4"><a href="https://github.com/anggi135/sej" class="text-xs border-b border-red-500">GitHub</a></div>
-                    </div>
-                                        <div class="project-card-v2">
-                        <h4 class="text-red-500 font-bold">Tools</h4>
-                        <p class="text-xs text-slate-400">Kumpulan Tools Cybersecurity.</p>
-                        <div class="mt-4 flex gap-4"><a href="https://github.com/anggi135/tools" class="text-xs border-b border-red-500">GitHub</a></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section>
+  <div class="content-reveal w-full max-w-6xl px-6 flex flex-col items-center">
+    
+    <h2 class="section-title mb-16 text-center text-3xl font-bold uppercase">
+      Proven <span class="text-red-600">Projects</span>
+    </h2>
+
+    <div class="hexagon-grid">
+
+      <!-- PROJECT 1 -->
+      <a href="https://github.com/anggi135/project" target="_blank" class="hexagon-item">
+        <div class="hex-shape">
+          <div class="hex-inner">
+            <i class="fa fa-shield-halved icon-hex"></i>
+            <span class="title-hex">Cyber Defense</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- PROJECT 2 -->
+      <a href="https://github.com/anggi135/sej" target="_blank" class="hexagon-item">
+        <div class="hex-shape">
+          <div class="hex-inner">
+            <i class="fa fa-search icon-hex"></i>
+            <span class="title-hex">Search Engine</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- PROJECT 3 -->
+      <a href="https://github.com/anggi135/tools" target="_blank" class="hexagon-item">
+        <div class="hex-shape">
+          <div class="hex-inner">
+            <i class="fa fa-toolbox icon-hex"></i>
+            <span class="title-hex">Cyber Tools</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
 
         <section>
             <div class="content-reveal w-full max-w-4xl px-6">
@@ -172,30 +176,50 @@
         </section>
 
         <section>
-            <div class="content-reveal w-full max-w-6xl px-6">
-                <h2 class="section-title mb-10 text-center text-3xl font-bold uppercase tracking-tighter">Validated <span class="text-red-600">Skills</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 overflow-y-auto max-h-[65vh] pr-2 custom-scroll">
-                    <div class="cert-card group">
-                        <div class="overflow-hidden"><img src="https://images.credly.com/size/680x680/images/18d8c64f-cf68-4259-b0ef-2a116e9224f1/blob" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"></div>
-                        <div class="p-4 bg-[#111] border-t border-red-600/30">
-                            <h4 class="font-bold text-red-500 uppercase text-sm tracking-widest">OWASP® Top 10 Security Threats</h4>
-                            <p class="text-[11px] text-slate-400 mt-1">Memahami konsep utama dan praktik terbaik dalam keamanan aplikasi web.</p>
-                        </div>
-                        <div class="overflow-hidden"><img src="https://images.credly.com/images/0a6d331e-8abf-4272-a949-33f754569a76/CCNAENSA__1_.png" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"></div>
-                        <div class="p-4 bg-[#111] border-t border-red-600/30">
-                            <h4 class="font-bold text-red-500 uppercase text-sm tracking-widest">CCNA</h4>
-                            <p class="text-[11px] text-slate-400 mt-1">Enterprise Networking, Security, and Automation
-.</p>
-                        </div>
-                        <div class="overflow-hidden"><img src="https://media.licdn.com/dms/image/v2/D562DAQFzKSUYYxME3g/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1732445667300?e=1771390800&v=beta&t=1t3N6NtA3ZPU5nM7KQsCUJ9NrhntCj0afDDpuD9PXfQ" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"></div>
-                        <div class="p-4 bg-[#111] border-t border-red-600/30">
-                            <h4 class="font-bold text-red-500 uppercase text-sm tracking-widest">Cyber sentinel secure</h4>
-                            <p class="text-[11px] text-slate-400 mt-1">Bootcamp Pentest & Defense aplikasi web.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <div class="content-reveal w-full max-w-6xl px-6">
+    <h2 class="section-title mb-10 text-center text-3xl font-bold uppercase tracking-tighter">
+      Validated <span class="text-red-600">Skills</span>
+    </h2>
+
+    <div class="skills-container custom-scroll">
+
+      <!-- CARD 1 -->
+      <div class="skill-card">
+        <div class="skill-img">
+          <img src="https://images.credly.com/size/680x680/images/18d8c64f-cf68-4259-b0ef-2a116e9224f1/blob">
+        </div>
+        <div class="skill-content">
+          <h4>OWASP® Top 10 Security Threats</h4>
+          <p>Memahami konsep utama dan praktik terbaik dalam keamanan aplikasi web.</p>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="skill-card">
+        <div class="skill-img">
+          <img src="https://images.credly.com/images/0a6d331e-8abf-4272-a949-33f754569a76/CCNAENSA__1_.png">
+        </div>
+        <div class="skill-content">
+          <h4>CCNA</h4>
+          <p>Enterprise Networking, Security, and Automation.</p>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="skill-card">
+        <div class="skill-img">
+          <img src="https://media.licdn.com/dms/image/v2/D562DAQFzKSUYYxME3g/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1732445667300?e=1771390800&v=beta&t=1t3N6NtA3ZPU5nM7KQsCUJ9NrhntCj0afDDpuD9PXfQ">
+        </div>
+        <div class="skill-content">
+          <h4>Cyber Sentinel Secure</h4>
+          <p>Bootcamp Pentest & Defense aplikasi web.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
         <section>
             <div class="content-reveal w-full max-w-4xl px-6 text-center">
@@ -210,6 +234,9 @@
                     </a>
                     <a href="https://www.tiktok.com/@anggi.prayitnow" target="_blank" class="link-item group">
                         <span class="font-mono text-red-500">[03]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Tiktok</span><i data-lucide="external-link" class="w-5 h-5 transition-transform group-hover:scale-110 group-hover:text-red-500"></i>
+                    </a>
+                    <a href="https://redowasp.hight.id" target="_blank" class="link-item group">
+                        <span class="font-mono text-red-500">[04]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Article</span><i data-lucide="external-link" class="w-5 h-5 transition-transform group-hover:scale-110 group-hover:text-red-500"></i>
                     </a>
                 </div>
             </div>
