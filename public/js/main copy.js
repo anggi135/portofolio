@@ -52,6 +52,63 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => isScrolling = false, cooldown);
     }, { passive: true });
 
+    // ================= KEYBOARD NAVIGATION =================
+window.addEventListener("keydown", (e) => {
+    if (isScrolling) return;
+
+    // Cegah scroll default browser
+    if (
+        e.key === "ArrowDown" ||
+        e.key === "ArrowUp" ||
+        e.key === "PageDown" ||
+        e.key === "PageUp"
+    ) {
+        e.preventDefault();
+    } else {
+        return;
+    }
+
+    const activeSection = sections[currentStep];
+    const scrollable = activeSection.querySelector(
+        ".custom-scroll, .overflow-y-auto"
+    );
+
+    // Kalau ada konten scrollable, hormati scroll internal dulu
+    if (scrollable) {
+        const atBottom =
+            Math.ceil(
+                scrollable.scrollHeight - scrollable.scrollTop
+            ) <= scrollable.clientHeight + 1;
+
+        const atTop = scrollable.scrollTop === 0;
+
+        if (
+            (e.key === "ArrowDown" || e.key === "PageDown") &&
+            !atBottom
+        )
+            return;
+
+        if (
+            (e.key === "ArrowUp" || e.key === "PageUp") &&
+            !atTop
+        )
+            return;
+    }
+
+    isScrolling = true;
+
+    if (e.key === "ArrowDown" || e.key === "PageDown") {
+        showSection(currentStep + 1);
+    }
+
+    if (e.key === "ArrowUp" || e.key === "PageUp") {
+        showSection(currentStep - 1);
+    }
+
+    setTimeout(() => (isScrolling = false), cooldown);
+});
+
+
     // Touch Mobile
     let touchY = 0;
     window.addEventListener('touchstart', e => touchY = e.touches[0].clientY, { passive: true });

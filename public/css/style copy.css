@@ -471,3 +471,22 @@ body {
   }
 }
 
+/* Custom Padding per Section */
+
+@media (max-width: 1080px) and (min-width: 768px) {
+    #sec-about {
+        padding-left: 5rem !important;
+        padding-right: 1.5rem !important;
+    }
+    #sec-learning {
+        padding-left: 5rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+
+@media (max-width: 1400px) and (min-width: 768px) {
+    #sec-skills {
+        padding-left: 5rem !important;
+        padding-right: 1.5rem !important;
+    }
+  }

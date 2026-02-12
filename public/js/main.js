@@ -1,3 +1,60 @@
+// ================= BOOT SYSTEM =================
+
+const bootLines = [
+"[ OK ] Reached Remote File Systems.",
+"[ OK ] Listening udev Kernel Socket.",
+"[ OK ] Listening udev Control Socket.",
+"Mounting Kernel File System...",
+"Starting Create List of required static the current kernel...",
+"[ OK ] Listening Syslog Socket.",
+"[ OK ] Created slice User",
+"[ OK ] Reached target Slices.",
+"Starting Set the console keyboard layout...",
+"Starting udev Coldplug all Devices...",
+"Starting Journal Service...",
+"[ OK ] Reached target Swap.",
+"[ OK ] Started Remount Root and Kernel File Systems.",
+"Starting Flush Journal to Persistent Storage...",
+"root@anggi:~#"
+];
+
+
+const terminal = document.getElementById("terminal");
+
+if (terminal) {
+  let lineIndex = 0;
+  let charIndex = 0;
+
+  function typeLine() {
+    if (lineIndex < bootLines.length) {
+      if (charIndex < bootLines[lineIndex].length) {
+        terminal.innerHTML += bootLines[lineIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeLine, 1);
+      } else {
+        terminal.innerHTML += "\n";
+        lineIndex++;
+        charIndex = 0;
+        setTimeout(typeLine, 10);
+      }
+    } else {
+      setTimeout(endBoot, 50);
+    }
+  }
+
+  function endBoot() {
+    const bootScreen = document.getElementById("boot-screen");
+    bootScreen.classList.add("boot-hide");
+
+    setTimeout(() => {
+      document.body.classList.remove("booting");
+      bootScreen.remove();
+    }, 1000);
+  }
+
+  window.addEventListener("load", typeLine);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Inisialisasi Icons
     if (typeof lucide !== 'undefined') lucide.createIcons();
