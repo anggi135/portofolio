@@ -26,12 +26,16 @@ body {
 /* ================= SLIDER ================= */
 .slider-wrapper section {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: none;
   align-items: center;
   justify-content: center;
   padding: 2rem;
 }
+
 
 .slider-wrapper section.active {
   display: flex;
@@ -130,6 +134,24 @@ body {
   margin-top: 20px;
 }
 
+/* ================= HEXAGON MOBILE GRID ================= */
+@media (max-width: 768px) {
+
+  .hexagon-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-items: center;
+  }
+
+  .hexagon-item {
+    width: 130px;
+    height: 150px;
+  }
+
+}
+
+
 .hexagon-item {
   width: 160px;
   height: 180px;
@@ -185,119 +207,6 @@ body {
 }
 
 /* ================= HEXAGON MENU (ADVANCED) ================= */
-
-.hexagon-menu {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px 30px;
-  margin-top: 40px;
-}
-
-.hexagon-item {
-  position: relative;
-  width: 174px;
-  height: 200px;
-  cursor: pointer;
-}
-
-.hexagon-item .hex-item {
-  position: absolute;
-  inset: 0;
-}
-
-.hexagon-item .hex-item div {
-  position: absolute;
-  inset: 0;
-  clip-path: polygon(
-    50% 0%,
-    100% 25%,
-    100% 75%,
-    50% 100%,
-    0% 75%,
-    0% 25%
-  );
-  border: 2px solid var(--primary-red);
-  opacity: 0.25;
-  transition: 0.4s ease;
-}
-
-.hexagon-item .hex-item div:nth-child(1) {
-  transform: scale(1);
-}
-
-.hexagon-item .hex-item div:nth-child(2) {
-  transform: scale(0.95);
-}
-
-.hexagon-item .hex-item div:nth-child(3) {
-  transform: scale(0.9);
-}
-
-/* ===== HEX CONTENT ===== */
-
-.hexagon-item .hex-content {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  text-decoration: none;
-  color: #fff;
-}
-
-.hexagon-item svg {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-
-.hex-content-inner {
-  position: relative;
-  z-index: 3;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.hex-content .icon {
-  font-size: 2.2rem;
-  color: var(--primary-red);
-  transition: 0.4s;
-}
-
-.hex-content .title {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #fff;
-}
-
-/* ===== HOVER EFFECT ===== */
-
-.hexagon-item:hover .hex-item div {
-  opacity: 1;
-  filter: drop-shadow(0 0 8px var(--primary-red));
-}
-
-.hexagon-item:hover .hex-item div:nth-child(1) {
-  transform: scale(1.05);
-}
-
-.hexagon-item:hover .hex-item div:nth-child(2) {
-  transform: scale(1);
-}
-
-.hexagon-item:hover .hex-item div:nth-child(3) {
-  transform: scale(0.95);
-}
-
-.hexagon-item:hover .icon {
-  transform: scale(1.15);
-  filter: drop-shadow(0 0 8px var(--primary-red));
-}
 
 
 /* ================= MOBILE NAV ================= */
@@ -393,14 +302,15 @@ body {
 
 .profile-border {
   position: relative;
-  width: 200px;
-  height: 200px;
-  border-radius: 18px;
+  width: clamp(240px, 28vw, 380px);
+  aspect-ratio: 1 / 1;
+  border-radius: 22px;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
+
 
 /* GARIS NEON YANG JALAN */
 .profile-border::before {
@@ -447,3 +357,117 @@ body {
 .profile-border {
   box-shadow: 0 0 15px rgba(220, 38, 38, 0.25);
 }
+
+/* ================= VALIDATED SKILLS SECTION ================= */
+
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  width: 100%;
+}
+
+/* CARD */
+.skill-card {
+  background: #111111;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(220, 38, 38, 0.15);
+  transition: 0.4s ease;
+}
+
+/* HOVER */
+
+/* IMAGE */
+.skill-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-img img {
+  width: 100%;
+  height: 160px; /* lebih pendek supaya muat 1 layar */
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* HOVER (desktop only, lebih clean & tidak terlalu neon) */
+@media (hover: hover) {
+  .skill-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(220, 38, 38, 0.5);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.4);
+  }
+
+  .skill-card:hover .skill-img img {
+    transform: scale(1.08);
+  }
+}
+
+
+/* Overlay soft */
+.skill-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 40%,
+    rgba(220, 38, 38, 0.25) 100%
+  );
+}
+
+/* CONTENT */
+.skill-content {
+  padding: 14px;
+}
+
+.skill-content h4 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary-red);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.skill-content p {
+  font-size: 11px;
+  color: #9ca3af;
+  line-height: 1.5;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .skills-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .skill-img img {
+    height: 140px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .skills-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .skill-img img {
+    height: 120px;
+  }
+
+  .skill-content h4 {
+    font-size: 12px;
+  }
+
+  .skill-content p {
+    font-size: 10px;
+  }
+}
+
