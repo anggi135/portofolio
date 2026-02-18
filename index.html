@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body class="bg-[#0a0a0a] text-slate-200 overflow-hidden booting">
+      <div class="floating-particles" id="particles"></div>
+    <div class="red-particles" id="redParticles"></div>
   <div id="boot-screen">
     <pre id="terminal"></pre>
   </div>
@@ -69,9 +71,8 @@
 
 
     <main id="slider" class="slider-wrapper">
-        
-        <section class="active hero-section">
-            <div class="content-reveal text-center z-10 px-6">
+      <section class="active hero-section relative overflow-hidden">
+    <div class="content-reveal text-center z-10 relative px-6">
                 <p class="java-subtext text-xs md:text-base mb-2">Sugeng Rawuh — Welcome to the Fortress</p>
                 <h1 class="hero-title">ANGGI<br><span class="glitch-text" data-text="PRAYITNO">PRAYITNO</span></h1>
                 <p class="text-slate-400 mt-4 max-w-lg mx-auto text-sm md:text-base text-center">
@@ -211,7 +212,7 @@
       <!-- CARD 3 -->
       <div class="skill-card">
         <div class="skill-img">
-          <img src="https://media.licdn.com/dms/image/v2/D562DAQFzKSUYYxME3g/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1732445667300?e=1771390800&v=beta&t=1t3N6NtA3ZPU5nM7KQsCUJ9NrhntCj0afDDpuD9PXfQ">
+          <img src="/public/img/css.jpg">
         </div>
         <div class="skill-content">
           <h4>Cyber Sentinel Secure</h4>
@@ -230,16 +231,16 @@
                 <p class="text-slate-500 text-[10px] uppercase tracking-[0.3em] mb-12 italic">External Nodes Authorized Only</p>
                 <div class="flex flex-col gap-4 max-w-2xl mx-auto">
                     <a href="https://www.linkedin.com/in/anggi-prayitno/" target="_blank" class="link-item group">
-                        <span class="font-mono text-red-500">[01]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Linkedin</span><i data-lucide="external-link" class="w-5 h-5 transition-transform group-hover:scale-110 group-hover:text-red-500"></i>
+                        <span class="font-mono text-red-500">[01]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Linkedin</span>
                     </a>
                     <a href="https://github.com/anggi135" target="_blank" class="link-item group">
-                        <span class="font-mono text-red-500">[02]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">GitHub</span><i data-lucide="external-link" class="w-5 h-5 transition-transform group-hover:scale-110 group-hover:text-red-500"></i>
+                        <span class="font-mono text-red-500">[02]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">GitHub</span>
                     </a>
                     <a href="https://www.tiktok.com/@anggi.prayitnow" target="_blank" class="link-item group">
-                        <span class="font-mono text-red-500">[03]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Tiktok</span><i data-lucide="external-link" class="w-5 h-5 transition-transform group-hover:scale-110 group-hover:text-red-500"></i>
+                        <span class="font-mono text-red-500">[03]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Tiktok</span>
                     </a>
                     <a href="https://redowasp.hight.id" target="_blank" class="link-item group">
-                        <span class="font-mono text-red-500">[04]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Article</span><i data-lucide="external-link" class="w-5 h-5 transition-transform group-hover:scale-110 group-hover:text-red-500"></i>
+                        <span class="font-mono text-red-500">[04]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Article</span>
                     </a>
                 </div>
             </div>
@@ -256,5 +257,6 @@
     </main>
 
     <script src="public/js/main.js"></script>
+    <script src="public/js/animations.js"></script>
 </body>
 </html>
