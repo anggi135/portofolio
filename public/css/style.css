@@ -31,7 +31,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow-y: auto;
 }
 
@@ -149,6 +149,18 @@ body {
   }
 
 }
+@media (max-width: 480px) {
+  .skill-card {
+    min-width: 90%;
+    max-width: 260px;
+  }
+  .skill-img img {
+  width: 100%;
+  height: clamp(160px, 28vw, 220px);
+  object-fit: cover;
+}
+}
+
 
 
 .hexagon-item {
