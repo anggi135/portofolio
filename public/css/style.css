@@ -780,5 +780,5 @@ main {
     100% { transform: translateX(110%); }
 }
 
-@media (max-width: 850px) { .skills-layout { grid-template-columns: 1fr; } }
+@media (max-width: 1200px) { .skills-layout { grid-template-columns: 1fr; } }
 
