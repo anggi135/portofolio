@@ -3,6 +3,7 @@
 /* ================= ROOT ================= */
 :root {
   --primary-red: #dc2626;
+  --primary:#c084fc;
   --dark-bg: #0a0a0a;
   --nav-bg: #111111;
   --transition-speed: 0.6s;
@@ -24,33 +25,36 @@ body {
 }
 
 /* ================= SLIDER ================= */
+/* ================= SLIDER (FIXED) ================= */
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100dvh; 
+  overflow: hidden; 
+}
+
 .slider-wrapper section {
   position: absolute;
-  display: none;
   inset: 0;
+  display: flex; 
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  min-height: 100dvh;
-  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  
+  transition: opacity 0.4s ease, transform 0.5s ease;
+  transform: translateY(20px);
 }
 
 
 .slider-wrapper section.active {
-  display: flex;
-  animation: sectionReveal var(--transition-speed)
-    cubic-bezier(0.19, 1, 0.22, 1) forwards;
-}
-
-@keyframes sectionReveal {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  z-index: 10;
 }
 
 /* ================= NAVIGATION (DESKTOP) ================= */
@@ -673,7 +677,7 @@ main {
   position: absolute;
   font-family: var(--font-code, monospace);
   font-size: 14px;
-  color: var(--primary, #fdfdfd2a);
+  color: var(--primary);
   opacity: 0;
   white-space: nowrap;
   user-select: none;
