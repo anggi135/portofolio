@@ -934,15 +934,3 @@ main {
   }
 
 }
-
-#sec-projects .content-reveal {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-@media (min-width: 769px) {
-    #sec-projects {
-        /* Memaksa section memberikan ruang di kiri seukuran menu navigasi */
-        padding-left: 110px; 
-    }
-}
