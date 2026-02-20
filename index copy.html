@@ -8,10 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="public/css/style.css">
 </head>
-<body class="bg-[#0a0a0a] text-slate-200 overflow-hidden booting">
+<body class="bg-[#0a0a0a] text-slate-200 booting">
+      <div class="floating-particles" id="particles"></div>
     <div class="red-particles" id="redParticles"></div>
   <div id="boot-screen">
     <pre id="terminal"></pre>
@@ -70,9 +71,8 @@
 
 
     <main id="slider" class="slider-wrapper">
-        
-        <section class="active hero-section">
-            <div class="content-reveal text-center z-10 px-6">
+      <section class="active hero-section relative overflow-hidden">
+    <div class="content-reveal text-center z-10 relative px-6">
                 <p class="java-subtext text-xs md:text-base mb-2">Sugeng Rawuh — Welcome to the Fortress</p>
                 <h1 class="hero-title">ANGGI<br><span class="glitch-text" data-text="PRAYITNO">PRAYITNO</span></h1>
                 <p class="text-slate-400 mt-4 max-w-lg mx-auto text-sm md:text-base text-center">
@@ -86,136 +86,263 @@
             </div>
         </section>
         
-        <section>
+<section>
     <div class="content-reveal w-full max-w-4xl" id="sec-about">
-        <h2 class="section-title text-center mb-8 text-3xl font-bold uppercase">
-            About <span class="text-red-600">Me</span>
-        </h2>
+        
+        <div class="flex justify-center w-full">
+            <h2 class="section-title text-center mb-8 text-3xl font-bold uppercase">
+                About <span class="text-[#c084fc]">Me</span>
+            </h2>
+        </div>
 
-        <!-- FOTO PROFILE -->
         <div class="profile-wrapper">
             <div class="profile-border">
                 <img src="public/img/anggi-prayitno.jpg" alt="Foto Profile" class="profile-img">
             </div>
         </div>
 
-        <div class="bg-zinc-900/50 p-6 md:p-10 rounded-2xl border border-red-900/20 backdrop-blur-md mt-8">
+        <div class="bg-zinc-900/50 p-6 md:p-10 rounded-2xl border border-[#c084fc]/20 backdrop-blur-md mt-8">
             <p class="text-slate-300 leading-relaxed text-sm md:text-lg text-center">
-                Saya mahasiswa Sekolah Tinggi Teknologi Informasi NIIT I-Tech kelas karyawan.
+                Saya mahasiswa Sekolah Tinggi Teknologi Informasi NIIT I-Tech kelas karyawan
                 dengan prodi Teknik Informatika dan juga meminati bidang 
-                <span class="text-red-500 font-bold">Cyber Security</span>.
+                <span class="text-[#c084fc] font-bold">Cyber Security</span>.
             </p>
         </div>
     </div>
 </section>
-
-        <section>
-            <div class="content-reveal max-w-5xl px-6">
-                <h2 class="section-title text-center mb-10 text-3xl font-bold uppercase">Technical <span class="text-red-600">Skills</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="arsenal-card"><i data-lucide="code-2" class="icon-red"></i><h3 class="font-bold mb-2">Web Dev</h3><p class="text-xs text-slate-500">HTML, CSS, JS, PHP, MySQL</p></div>
-                    <div class="arsenal-card"><i data-lucide="shield-check" class="icon-red"></i><h3 class="font-bold mb-2">Security</h3><p class="text-xs text-slate-500">OWASP, SQLi, XSS, Pentest</p></div>
-                    <div class="arsenal-card"><i data-lucide="brain" class="icon-red"></i><h3 class="font-bold mb-2">Soft Skills</h3><p class="text-xs text-slate-500">Problem Solving, Reporting</p></div>
+<section id="skills" class="skills-section">
+    <div class="section-container content-reveal">
+        <div class="flex justify-center w-full">
+            <h2 class="section-title text-center mb-10 text-3xl font-bold uppercase">
+                Technical <span class="text-[#c084fc]">Skills</span>
+            </h2>
+        </div>
+                <div class="skills-layout">
+            <div class="skills-code-side">
+                <div class="code-block">
+                    <div class="code-line"><span class="code-keyword">const</span> <span class="code-variable">root_profile</span> <span class="code-operator">=</span> <span class="code-brace">{</span></div>
+                    <div class="code-line indent">
+                        <span class="code-property">expertise</span><span class="code-operator">:</span> <span class="code-bracket">[</span>
+                        <span class="code-string">'Pentesting'</span><span class="code-comma">,</span>
+                        <span class="code-string">'Bug Bounty'</span><span class="code-comma">,</span>
+                        <span class="code-string">'SOC'</span>
+                        <span class="code-bracket">]</span><span class="code-comma">,</span>
+                    </div>
+                    <div class="code-line indent">
+                        <span class="code-property">is_ethical</span><span class="code-operator">:</span> <span class="code-keyword">true</span><span class="code-comma">,</span>
+                    </div>
+                    <div class="code-line indent">
+                        <span class="code-property">status</span><span class="code-operator">:</span> <span class="code-string">'Hunting Vulnerabilities'</span>
+                    </div>
+                    <div class="code-line"><span class="code-brace">}</span><span class="code-semicolon">;</span></div>
                 </div>
             </div>
-        </section>
 
-<section>
+            <div class="skills-visual-side">
+                <div class="skill-item" data-percent="90">
+                    <div class="skill-header">
+                        <span class="skill-name"><i class="fas fa-shield-alt"></i> Penetration Testing</span>
+                        <span class="skill-percent">0%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress-cyber"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item" data-percent="85">
+                    <div class="skill-header">
+                        <span class="skill-name"><i class="fas fa-bug"></i> OWASP Top 10</span>
+                        <span class="skill-percent">0%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress-cyber"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item" data-percent="80">
+                    <div class="skill-header">
+                        <span class="skill-name"><i class="fas fa-code"></i> Web Development</span>
+                        <span class="skill-percent">0%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress-cyber"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="sec-projects">
   <div class="content-reveal w-full max-w-6xl px-6 flex flex-col items-center">
-    
+
     <h2 class="section-title mb-16 text-center text-3xl font-bold uppercase">
       Proven <span class="text-red-600">Projects</span>
     </h2>
 
-    <div class="hexagon-grid">
+    <div class="projects-grid">
 
       <!-- PROJECT 1 -->
-      <a href="https://github.com/anggi135/project" target="_blank" class="hexagon-item">
-        <div class="hex-shape">
-          <div class="hex-inner">
-            <i class="fa fa-shield-halved icon-hex"></i>
-            <span class="title-hex">Cyber Defense</span>
+      <div class="project-card visible">
+        <div class="project-image">
+          <div class="project-overlay">
+            <div class="project-links">
+              <a href="https://github.com/anggi135/project" target="_blank" class="project-link">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+              <a href="https://github.com/anggi135/project" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-placeholder">
+            <i class="fas fa-shield-halved"></i>
           </div>
         </div>
-      </a>
+        <div class="project-content">
+          <h3 class="project-title">Cyber Defense</h3>
+          <p class="project-description">
+            Security monitoring and defensive cyber operations project.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Security</span>
+            <span class="tag">Blue Team</span>
+          </div>
+        </div>
+      </div>
 
       <!-- PROJECT 2 -->
-      <a href="https://github.com/anggi135/sej" target="_blank" class="hexagon-item">
-        <div class="hex-shape">
-          <div class="hex-inner">
-            <i class="fa fa-search icon-hex"></i>
-            <span class="title-hex">Search Engine</span>
+      <div class="project-card visible">
+        <div class="project-image">
+          <div class="project-overlay">
+            <div class="project-links">
+              <a href="https://github.com/anggi135/sej" target="_blank" class="project-link">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+              <a href="https://github.com/anggi135/sej" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-placeholder">
+            <i class="fas fa-search"></i>
           </div>
         </div>
-      </a>
+        <div class="project-content">
+          <h3 class="project-title">Search Engine</h3>
+          <p class="project-description">
+            Custom search engine with indexing and ranking system.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">IR</span>
+          </div>
+        </div>
+      </div>
 
       <!-- PROJECT 3 -->
-      <a href="https://github.com/anggi135/tools" target="_blank" class="hexagon-item">
-        <div class="hex-shape">
-          <div class="hex-inner">
-            <i class="fa fa-toolbox icon-hex"></i>
-            <span class="title-hex">Cyber Tools</span>
+      <div class="project-card visible">
+        <div class="project-image">
+          <div class="project-overlay">
+            <div class="project-links">
+              <a href="https://github.com/anggi135/tools" target="_blank" class="project-link">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+              <a href="https://github.com/anggi135/tools" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-placeholder">
+            <i class="fas fa-toolbox"></i>
           </div>
         </div>
-      </a>
+        <div class="project-content">
+          <h3 class="project-title">Cyber Tools</h3>
+          <p class="project-description">
+            Collection of automation and penetration testing tools.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Pentest</span>
+            <span class="tag">Automation</span>
+          </div>
+        </div>
+      </div>
 
     </div>
-
   </div>
 </section>
 
 
-        <section>
-            <div class="content-reveal w-full max-w-4xl " id="sec-learning">
-                <h2 class="section-title text-center mb-10 text-3xl font-bold uppercase">Learning <span class="text-red-600">Journey</span></h2>
-                <div class="space-y-6 border-l-2 border-red-600/30 pl-8 ml-4">
-                    <div class="relative"><div class="absolute -left-[41px] top-0 w-4 h-4 bg-red-600 rounded-full shadow-[0_0_10px_red]"></div>
-                    <h4 class="font-bold text-lg">Mahasiswa TI (Semester 6)</h4><p class="text-sm text-slate-400 italic">Penerima Beasiswa Pemda.</p></div>
-                    <div class="relative"><div class="absolute -left-[41px] top-0 w-4 h-4 bg-red-600 rounded-full"></div>
-                    <h4 class="font-bold text-lg">Paket C | SMA</h4><p class="text-sm text-slate-400 italic">Pendidikan Setara SMA dengan minat Ilmu pengetahuan Sosial.</p></div>
-                    <div class="relative"><div class="absolute -left-[41px] top-0 w-4 h-4 bg-red-600 rounded-full"></div>
-                    <h4 class="font-bold text-lg">Autodidak</h4><p class="text-sm text-slate-400 italic">Pembelajaran mandiri yang dilakukan secara konsisten dan terus-menerus dengan minat dalam bidang Cybersecurity.</p></div>
-                </div>
-            </div>
-        </section>
+<section>
+    <div class="content-reveal w-full max-w-4xl" id="sec-learning">
+        
+        <div class="flex justify-center w-full">
+            <h2 class="section-title text-center mb-10 text-3xl font-bold uppercase">
+                Learning <span class="text-[#c084fc]">Journey</span>
+            </h2>
+        </div>
 
-        <section>
+        <div class="space-y-6 border-l-2 border-[#c084fc]/30 pl-8 ml-4">
+            
+            <div class="relative">
+                <div class="absolute -left-[41px] top-0 w-4 h-4 bg-[#c084fc] rounded-full shadow-[0_0_10px_#c084fc]"></div>
+                <h4 class="font-bold text-lg">Mahasiswa TI (Semester 6)</h4>
+                <p class="text-sm text-slate-400 italic">Penerima Beasiswa Pemda.</p>
+            </div>
+
+            <div class="relative">
+                <div class="absolute -left-[41px] top-0 w-4 h-4 bg-[#c084fc] rounded-full shadow-[0_0_5px_#c084fc]"></div>
+                <h4 class="font-bold text-lg">Paket C | SMA</h4>
+                <p class="text-sm text-slate-400 italic">Pendidikan Setara SMA dengan minat Ilmu pengetahuan Sosial.</p>
+            </div>
+
+            <div class="relative">
+                <div class="absolute -left-[41px] top-0 w-4 h-4 bg-[#c084fc] rounded-full shadow-[0_0_5px_#c084fc]"></div>
+                <h4 class="font-bold text-lg">Autodidak</h4>
+                <p class="text-sm text-slate-400 italic">Pembelajaran mandiri yang dilakukan secara konsisten dengan minat bidang Cybersecurity.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
   <div class="content-reveal w-full max-w-6xl" id="sec-skills">
-    <h2 class="section-title mb-10 text-center text-3xl font-bold uppercase tracking-tighter">
-      Validated <span class="text-red-600">Skills</span>
-    </h2>
+    
+    <div class="flex justify-center w-full">
+      <h2 class="section-title text-center mb-10 text-3xl font-bold uppercase tracking-tighter">
+        Validated <span class="text-[#c084fc]">Skills</span>
+      </h2>
+    </div>
 
     <div class="skills-container custom-scroll">
 
-      <!-- CARD 1 -->
       <div class="skill-card">
         <div class="skill-img">
-          <img src="https://images.credly.com/size/680x680/images/18d8c64f-cf68-4259-b0ef-2a116e9224f1/blob">
+          <img src="/public/img/owasp.png">
         </div>
         <div class="skill-content">
-          <h4>OWASP® Top 10 Security Threats</h4>
+          <h4 class="text-[#c084fc]">OWASP® Top 10 Security Threats</h4>
           <p>Memahami kerentanan dan langkah mitigasi awal web aplikasi.</p>
         </div>
       </div>
 
-      <!-- CARD 2 -->
       <div class="skill-card">
         <div class="skill-img">
-          <img src="https://images.credly.com/images/0a6d331e-8abf-4272-a949-33f754569a76/CCNAENSA__1_.png">
+          <img src="/public/img/ccna.png">
         </div>
         <div class="skill-content">
-          <h4>CCNA</h4>
+          <h4 class="text-[#c084fc]">CCNA</h4>
           <p>Enterprise Networking, Security, and Automation.</p>
         </div>
       </div>
 
-      <!-- CARD 3 -->
       <div class="skill-card">
         <div class="skill-img">
           <img src="/public/img/css.jpg">
         </div>
         <div class="skill-content">
-          <h4>Cyber Sentinel Secure</h4>
+          <h4 class="text-[#c084fc]">Cyber Sentinel Secure</h4>
           <p>Bootcamp Pentest & Defense aplikasi web.</p>
         </div>
       </div>
@@ -225,26 +352,40 @@
 </section>
 
 
-        <section>
-            <div class="content-reveal w-full max-w-4xl px-6 text-center">
-                <h2 class="section-title mb-2 text-3xl font-bold uppercase tracking-tighter">Network <span class="text-red-600 font-mono">Access</span></h2>
-                <p class="text-slate-500 text-[10px] uppercase tracking-[0.3em] mb-12 italic">External Nodes Authorized Only</p>
-                <div class="flex flex-col gap-4 max-w-2xl mx-auto">
-                    <a href="https://www.linkedin.com/in/anggi-prayitno/" target="_blank" class="link-item group">
-                        <span class="font-mono text-red-500">[01]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Linkedin</span>
-                    </a>
-                    <a href="https://github.com/anggi135" target="_blank" class="link-item group">
-                        <span class="font-mono text-red-500">[02]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">GitHub</span>
-                    </a>
-                    <a href="https://www.tiktok.com/@anggi.prayitnow" target="_blank" class="link-item group">
-                        <span class="font-mono text-red-500">[03]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Tiktok</span>
-                    </a>
-                    <a href="https://redowasp.hight.id" target="_blank" class="link-item group">
-                        <span class="font-mono text-red-500">[04]</span><span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Article</span>
-                    </a>
-                </div>
-            </div>
-        </section>
+<section>
+    <div class="content-reveal w-full max-w-4xl px-6 text-center">
+        
+        <div class="flex justify-center w-full">
+            <h2 class="section-title mb-2 text-3xl font-bold uppercase tracking-tighter">
+                Network <span class="text-[#c084fc] font-mono">Access</span>
+            </h2>
+        </div>
+
+        <p class="text-slate-500 text-[10px] uppercase tracking-[0.3em] mb-12 italic">External Nodes Authorized Only</p>
+        
+        <div class="flex flex-col gap-4 max-w-2xl mx-auto">
+            <a href="https://www.linkedin.com/in/anggi-prayitno/" target="_blank" class="link-item group border-[#c084fc]/20 hover:border-[#c084fc]/50 transition-all">
+                <span class="font-mono text-[#c084fc]">[01]</span>
+                <span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Linkedin</span>
+            </a>
+
+            <a href="https://github.com/anggi135" target="_blank" class="link-item group border-[#c084fc]/20 hover:border-[#c084fc]/50 transition-all">
+                <span class="font-mono text-[#c084fc]">[02]</span>
+                <span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">GitHub</span>
+            </a>
+
+            <a href="https://www.tiktok.com/@anggi.prayitnow" target="_blank" class="link-item group border-[#c084fc]/20 hover:border-[#c084fc]/50 transition-all">
+                <span class="font-mono text-[#c084fc]">[03]</span>
+                <span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Tiktok</span>
+            </a>
+
+            <a href="https://redowasp.hight.id" target="_blank" class="link-item group border-[#c084fc]/20 hover:border-[#c084fc]/50 transition-all">
+                <span class="font-mono text-[#c084fc]">[04]</span>
+                <span class="flex-1 text-left px-4 uppercase tracking-widest text-sm font-semibold">Article</span>
+            </a>
+        </div>
+    </div>
+</section>
 
         <section>
             <div class="content-reveal text-center">
