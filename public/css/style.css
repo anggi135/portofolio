@@ -29,25 +29,29 @@ body {
 }
 
 /* ================= SLIDER ================= */
-/* ================= SLIDER (FIXED) ================= */
+
 .slider-wrapper {
   position: relative;
   height: 100vh;
   height: 100dvh;
-  overflow: hidden; 
+  overflow: visible; 
 }
 
 .slider-wrapper section {
   position: absolute;
-  inset: 0;
-  display: flex; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%; /* ← bukan inset */
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  
+
   transition: opacity 0.4s ease, transform 0.5s ease;
   transform: translateY(20px);
 }
@@ -441,7 +445,7 @@ body {
   border-radius: 20px 20px 0 0;
   opacity: 0.7;
 }
-.skill-card:nth-child(1) .skill-img::after {
+/* .skill-card:nth-child(1) .skill-img::after {
   background-image: linear-gradient(135deg, #0100ec, #fb36f4);
 }
 
@@ -458,7 +462,7 @@ body {
 
 .skill-card:active {
   transform: scale(0.96);
-}
+} */
 
 
 
@@ -929,4 +933,16 @@ main {
     scroll-snap-align: center;
   }
 
+}
+
+#sec-projects .content-reveal {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 769px) {
+    #sec-projects {
+        /* Memaksa section memberikan ruang di kiri seukuran menu navigasi */
+        padding-left: 110px; 
+    }
 }
