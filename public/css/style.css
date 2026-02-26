@@ -308,6 +308,7 @@ body {
 
 .custom-scroll::-webkit-scrollbar {
   width: 4px;
+  height: 4px;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
@@ -387,8 +388,9 @@ body {
 
 .skills-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+  justify-content: center;
+  gap: 18px;
   padding: 20px;
 }
 
@@ -469,21 +471,21 @@ body {
 
 /* CONTENT */
 .skill-content {
-  padding: 20px 15px;
+  padding: 14px 12px;
 }
 
 .skill-content h4 {
   color: #ffffff;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   margin: 10px 0 15px 0;
 }
 
 
 .skill-content p {
   color: #a0a0a0;
-  font-size: 15px;
-  line-height: 28px;
+  font-size: 14px;
+  line-height: 22px;
   font-weight: 400;
 }
 
@@ -497,15 +499,15 @@ body {
     padding: 20px;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth; /* ➕ TAMBAH INI */
+    scroll-behavior: smooth;
   }
 
   .skills-container::-webkit-scrollbar {
     display: none;
   }
   .skill-card {
-  min-width: 85%;
-  max-width: 320px;
+  min-width: 240px;
+  max-width: 260px;
   flex: 0 0 auto;
   scroll-snap-align: center;
 }
@@ -927,8 +929,8 @@ main {
   }
 
   .project-card {
-    min-width: 85%;
-    max-width: 320px;
+    min-width: 240px;
+    max-width: 280px;
     flex: 0 0 auto;
     scroll-snap-align: center;
   }
