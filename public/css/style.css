@@ -389,7 +389,6 @@ body {
 .skills-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
-  justify-content: center;
   gap: 18px;
   padding: 20px;
 }
@@ -931,7 +930,6 @@ main {
   .project-card {
     min-width: 240px;
     max-width: 260px;
-    max-height: 400px;
     flex: 0 0 auto;
     scroll-snap-align: center;
   }
