@@ -913,7 +913,7 @@ main {
 @media (max-width: 1200px) {
 
   .projects-grid {
-    display: flex;              /* ⬅️ ubah dari grid */
+    display: flex;              
     gap: 20px;
     overflow-x: auto;
     padding: 20px 4px 25px;
