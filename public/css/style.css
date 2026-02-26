@@ -931,6 +931,7 @@ main {
   .project-card {
     min-width: 240px;
     max-width: 260px;
+    max-height: 400px;
     flex: 0 0 auto;
     scroll-snap-align: center;
   }
