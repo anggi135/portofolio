@@ -930,7 +930,7 @@ main {
 
   .project-card {
     min-width: 240px;
-    max-width: 280px;
+    max-width: 260px;
     flex: 0 0 auto;
     scroll-snap-align: center;
   }
